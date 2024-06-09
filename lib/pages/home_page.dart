@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
                 'assets/data/restaurant.json',
               ),
               builder: (context, snapshot) {
-                List<Restaurant> data = parsedListRestaurant(snapshot.data);
+                List<Restaurant> data = parsedRestaurants(snapshot.data);
 
                 return Column(
                   children: data

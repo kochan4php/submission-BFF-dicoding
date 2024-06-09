@@ -29,7 +29,7 @@ class Restaurant {
   }
 }
 
-List<Restaurant> parsedListRestaurant(String? json) {
+List<Restaurant> parsedRestaurants(String? json) {
   if (json == null) {
     return [];
   }
