@@ -36,43 +36,44 @@ class HomePage extends StatelessWidget {
       title: titleAppBar,
       backgroundColor: AppColors.primaryColor,
       actions: appBarAction,
+      surfaceTintColor: Colors.transparent,
     );
   }
 
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              'Restoran',
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            _gap(y: 2.0),
-            Text(
               'Rekomendasi restoran untuk mu!',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.headlineMedium,
+              textAlign: TextAlign.center,
             ),
-            _gap(y: 15.0),
-            FutureBuilder(
-              future: DefaultAssetBundle.of(context).loadString(
-                'assets/data/restaurant.json',
-              ),
-              builder: (context, snapshot) {
-                List<Restaurant> data = parsedRestaurants(snapshot.data);
-
-                return Column(
-                  children: data
-                      .map((item) => _buildRestaurantItem(context, item))
-                      .toList(),
-                );
-              },
-            ),
+            _gap(y: 18.0),
+            _buildRestaurantList(context),
           ],
         ),
       ),
+    );
+  }
+
+  FutureBuilder<String> _buildRestaurantList(BuildContext context) {
+    return FutureBuilder(
+      future: DefaultAssetBundle.of(context).loadString(
+        'assets/data/restaurant.json',
+      ),
+      builder: (context, snapshot) {
+        List<Restaurant> data = parsedRestaurants(snapshot.data);
+
+        return Column(
+          children: data.map((item) {
+            return _buildRestaurantItem(context, item);
+          }).toList(),
+        );
+      },
     );
   }
 

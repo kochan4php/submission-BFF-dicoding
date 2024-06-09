@@ -21,7 +21,6 @@ class AppTextTheme {
       headlineLarge: GoogleFonts.montserrat(
         fontSize: 32,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.25,
       ),
       headlineMedium: GoogleFonts.montserrat(
         fontSize: 28,
