@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Restaurant {
   final String id;
   final String name;
@@ -25,4 +27,13 @@ class Restaurant {
       rating: json['rating'].toDouble(),
     );
   }
+}
+
+List<Restaurant> parsedListRestaurant(String? json) {
+  if (json == null) {
+    return [];
+  }
+
+  final List parsed = jsonDecode(json)['restaurants'];
+  return parsed.map((item) => Restaurant.fromJson(item)).toList();
 }
