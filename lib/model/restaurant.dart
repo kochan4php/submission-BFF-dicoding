@@ -27,6 +27,17 @@ class Restaurant {
       rating: json['rating'].toDouble(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'pictureId': pictureId,
+      'city': city,
+      'rating': rating.toDouble(),
+    };
+  }
 }
 
 List<Restaurant> parsedRestaurants(String? json) {
