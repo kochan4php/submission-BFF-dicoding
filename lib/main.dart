@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
     return const TextTheme(
       bodyLarge: TextStyle(
         color: AppColors.textPrimaryColor,
-      ), // bodyText1 di versi sebelumnya
+      ),
       bodyMedium: TextStyle(
         color: AppColors.textSecondaryColor,
-      ), // bodyText2 di versi sebelumnya
+      ),
       headlineMedium: TextStyle(
         color: AppColors.headingColor,
-      ), // headline5 di versi sebelumnya
+      ),
     );
   }
 }
