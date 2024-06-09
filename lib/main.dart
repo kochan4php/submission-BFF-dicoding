@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/pages/home_page.dart';
+import 'package:restaurant_app/routes/routes.dart';
 import 'package:restaurant_app/themes/colors.dart';
 
 void main() => runApp(const MyApp());
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.secondaryColor,
         textTheme: buildTextTheme(),
       ),
-      home: const HomePage(),
+      initialRoute: Routes.homePageRoute,
+      routes: {
+        Routes.homePageRoute: (context) => const HomePage(),
+      },
     );
   }
 
