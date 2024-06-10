@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/mixin/spacing.dart';
 import 'package:restaurant_app/model/restaurant.dart';
+import 'package:restaurant_app/routes/routes.dart';
 import 'package:restaurant_app/themes/colors.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatelessWidget with Spacing {
   const HomePage({super.key});
 
   @override
@@ -48,11 +50,11 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              'Rekomendasi restoran untuk mu!',
+              'Rekomendasi untuk mu!',
               style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
-            _gap(y: 18.0),
+            gap(y: 18.0),
             _buildRestaurantList(context),
           ],
         ),
@@ -63,7 +65,7 @@ class HomePage extends StatelessWidget {
   FutureBuilder<String> _buildRestaurantList(BuildContext context) {
     return FutureBuilder(
       future: DefaultAssetBundle.of(context).loadString(
-        'assets/data/restaurant.json',
+        'assets/data/local_restaurant.json',
       ),
       builder: (context, snapshot) {
         List<Restaurant> data = parsedRestaurants(snapshot.data);
@@ -93,22 +95,22 @@ class HomePage extends StatelessWidget {
           restaurant.name,
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        _gap(y: 5),
+        gap(y: 5),
         Row(
           children: <Widget>[
             const Icon(Icons.location_on, size: 16),
-            _gap(x: 5),
+            gap(x: 5),
             Text(
               restaurant.city,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
-        _gap(y: 8),
+        gap(y: 8),
         Row(
           children: <Widget>[
             const Icon(Icons.star, size: 16),
-            _gap(x: 5),
+            gap(x: 5),
             Text(
               restaurant.rating.toString(),
               style: Theme.of(context).textTheme.labelLarge,
@@ -121,7 +123,13 @@ class HomePage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            Routes.detailPageRoute,
+            arguments: restaurant,
+          );
+        },
         splashColor: Colors.transparent,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +137,7 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: restaurantImage,
             ),
-            _gap(x: 13),
+            gap(x: 13),
             Expanded(
               flex: 2,
               child: restaurantBody,
@@ -137,13 +145,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  SizedBox _gap({double x = 0.0, double y = 0.0}) {
-    return SizedBox(
-      width: x,
-      height: y,
     );
   }
 }

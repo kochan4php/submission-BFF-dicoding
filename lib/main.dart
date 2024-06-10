@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/model/restaurant.dart';
+import 'package:restaurant_app/pages/detail_page.dart';
 import 'package:restaurant_app/pages/home_page.dart';
 import 'package:restaurant_app/routes/routes.dart';
 import 'package:restaurant_app/themes/colors.dart';
@@ -17,6 +19,10 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.homePageRoute,
       routes: {
         Routes.homePageRoute: (context) => const HomePage(),
+        Routes.detailPageRoute: (context) => DetailPage(
+              restaurant:
+                  ModalRoute.of(context)?.settings.arguments as Restaurant,
+            ),
       },
     );
   }
