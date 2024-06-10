@@ -29,9 +29,7 @@ class HomePage extends StatelessWidget with Spacing {
 
     const Widget titleAppBar = Text(
       'Resto Rasa',
-      style: TextStyle(
-        color: AppColors.textOnPrimaryColor,
-      ),
+      style: TextStyle(color: AppColors.textOnPrimaryColor),
     );
 
     return AppBar(
@@ -43,6 +41,8 @@ class HomePage extends StatelessWidget with Spacing {
   }
 
   Widget _buildBody(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
@@ -51,18 +51,19 @@ class HomePage extends StatelessWidget with Spacing {
           children: <Widget>[
             Text(
               'Rekomendasi untuk mu!',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
             gap(y: 18.0),
-            _buildRestaurantList(context),
+            _buildRestaurantList(context, textTheme),
           ],
         ),
       ),
     );
   }
 
-  FutureBuilder<String> _buildRestaurantList(BuildContext context) {
+  FutureBuilder<String> _buildRestaurantList(
+      BuildContext context, TextTheme textTheme) {
     return FutureBuilder(
       future: DefaultAssetBundle.of(context).loadString(
         'assets/data/local_restaurant.json',
@@ -71,39 +72,37 @@ class HomePage extends StatelessWidget with Spacing {
         List<Restaurant> data = parsedRestaurants(snapshot.data);
 
         return Column(
-          children: data.map((item) {
-            return _buildRestaurantItem(context, item);
-          }).toList(),
+          children: data
+              .map((item) => _buildRestaurantItem(context, item, textTheme))
+              .toList(),
         );
       },
     );
   }
 
-  Widget _buildRestaurantItem(BuildContext context, Restaurant restaurant) {
+  Widget _buildRestaurantItem(
+    BuildContext context,
+    Restaurant restaurant,
+    TextTheme textTheme,
+  ) {
     final Widget restaurantImage = ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
-      child: Image.network(
-        restaurant.pictureId,
-        fit: BoxFit.fill,
+      child: Hero(
+        tag: restaurant.pictureId,
+        child: Image.network(restaurant.pictureId, fit: BoxFit.fill),
       ),
     );
 
     final Widget restaurantBody = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Text(
-          restaurant.name,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text(restaurant.name, style: textTheme.titleLarge),
         gap(y: 5),
         Row(
           children: <Widget>[
             const Icon(Icons.location_on, size: 16),
             gap(x: 5),
-            Text(
-              restaurant.city,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+            Text(restaurant.city, style: textTheme.bodyLarge),
           ],
         ),
         gap(y: 8),
@@ -111,10 +110,7 @@ class HomePage extends StatelessWidget with Spacing {
           children: <Widget>[
             const Icon(Icons.star, size: 16),
             gap(x: 5),
-            Text(
-              restaurant.rating.toString(),
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
+            Text(restaurant.rating.toString(), style: textTheme.labelLarge),
           ],
         ),
       ],
@@ -134,14 +130,9 @@ class HomePage extends StatelessWidget with Spacing {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Expanded(
-              child: restaurantImage,
-            ),
+            Expanded(child: restaurantImage),
             gap(x: 13),
-            Expanded(
-              flex: 2,
-              child: restaurantBody,
-            ),
+            Expanded(flex: 2, child: restaurantBody),
           ],
         ),
       ),
