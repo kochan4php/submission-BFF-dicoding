@@ -85,10 +85,10 @@ class HomePage extends StatelessWidget with Spacing {
     Restaurant restaurant,
     TextTheme textTheme,
   ) {
-    final Widget restaurantImage = ClipRRect(
-      borderRadius: BorderRadius.circular(10.0),
-      child: Hero(
-        tag: restaurant.pictureId,
+    final Widget restaurantImage = Hero(
+      tag: restaurant.pictureId,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.0),
         child: Image.network(restaurant.pictureId, fit: BoxFit.fill),
       ),
     );

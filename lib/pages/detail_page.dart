@@ -44,50 +44,50 @@ class _DetailPageState extends State<DetailPage> with Spacing {
   }
 
   Widget _buildRestaurantHeroImage(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        ClipRRect(
-          borderRadius: const BorderRadius.only(
-            bottomRight: Radius.circular(15.0),
-            bottomLeft: Radius.circular(15.0),
-          ),
-          child: Hero(
-            tag: widget.restaurant.pictureId,
+    return Hero(
+      tag: widget.restaurant.pictureId,
+      child: Stack(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomRight: Radius.circular(15.0),
+              bottomLeft: Radius.circular(15.0),
+            ),
             child: Image.network(
               widget.restaurant.pictureId,
               height: 325,
               fit: BoxFit.cover,
             ),
           ),
-        ),
-        SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.arrow_back),
-                  ),
-                ),
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: IconButton(
-                    onPressed: handlePressedFavoriteButton,
-                    icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.red,
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.arrow_back),
                     ),
                   ),
-                ),
-              ],
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: IconButton(
+                      onPressed: handlePressedFavoriteButton,
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
