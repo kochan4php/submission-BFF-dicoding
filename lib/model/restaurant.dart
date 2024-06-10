@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:restaurant_app/model/menus.dart';
+
 class Restaurant {
   final String id;
   final String name;
@@ -7,6 +9,7 @@ class Restaurant {
   final String pictureId;
   final String city;
   final double rating;
+  final Menus menus;
 
   Restaurant({
     required this.id,
@@ -15,6 +18,7 @@ class Restaurant {
     required this.pictureId,
     required this.city,
     required this.rating,
+    required this.menus,
   });
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
@@ -25,6 +29,7 @@ class Restaurant {
       pictureId: json['pictureId'],
       city: json['city'],
       rating: json['rating'].toDouble(),
+      menus: Menus.fromJson(json['menus']),
     );
   }
 
