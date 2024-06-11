@@ -103,12 +103,31 @@ class _DetailPageState extends State<DetailPage> with Spacing {
           gap(y: 12.0),
           Row(
             children: <Widget>[
-              const Icon(Icons.location_on, size: 20),
+              const Icon(
+                Icons.location_on,
+                size: 20,
+                color: Colors.red,
+              ),
               gap(x: 5.0),
               Text(widget.restaurant.city, style: textTheme.titleLarge),
             ],
           ),
-          gap(y: 25.0),
+          gap(y: 12.0),
+          Row(
+            children: <Widget>[
+              const Icon(
+                Icons.star,
+                size: 20,
+                color: Colors.amber,
+              ),
+              gap(x: 5.0),
+              Text(
+                widget.restaurant.rating.toString(),
+                style: textTheme.titleMedium,
+              ),
+            ],
+          ),
+          gap(y: 20.0),
           Text(widget.restaurant.description, style: textTheme.bodyLarge),
           gap(y: 25.0),
           Text('Menu Makanan :', style: textTheme.titleMedium),
