@@ -1,14 +1,14 @@
 import 'package:restaurant_app/model/drink.dart';
 import 'package:restaurant_app/model/food.dart';
 
-class Menus {
+class Menu {
   final List<Food> foods;
   final List<Drink> drinks;
 
-  Menus({required this.foods, required this.drinks});
+  Menu({required this.foods, required this.drinks});
 
-  factory Menus.fromJson(Map<String, dynamic> json) {
-    return Menus(
+  factory Menu.fromJson(Map<String, dynamic> json) {
+    return Menu(
       foods: List<Food>.from((json['foods'] as List).map(
         (item) => Food.fromJson(item),
       )),
