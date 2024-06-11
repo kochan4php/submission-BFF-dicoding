@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:restaurant_app/model/menus.dart';
+import 'package:restaurant_app/model/menu.dart';
 
 class Restaurant {
   final String id;

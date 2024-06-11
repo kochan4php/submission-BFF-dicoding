@@ -69,13 +69,29 @@ class HomePage extends StatelessWidget with Spacing {
         'assets/data/local_restaurant.json',
       ),
       builder: (context, snapshot) {
-        List<Restaurant> data = parsedRestaurants(snapshot.data);
+        // loading
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-        return Column(
-          children: data
-              .map((item) => _buildRestaurantItem(context, item, textTheme))
-              .toList(),
-        );
+        // success
+        if (snapshot.hasData) {
+          List<Restaurant> data = parsedRestaurants(snapshot.data);
+
+          return Column(
+            children: data
+                .map((item) => _buildRestaurantItem(context, item, textTheme))
+                .toList(),
+          );
+        }
+
+        // error
+        if (snapshot.hasError) {
+          return Center(child: Text(snapshot.error.toString()));
+        }
+
+        // loading
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }
