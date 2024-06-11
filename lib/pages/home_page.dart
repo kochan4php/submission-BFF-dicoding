@@ -116,15 +116,15 @@ class HomePage extends StatelessWidget with Spacing {
         gap(y: 5),
         Row(
           children: <Widget>[
-            const Icon(Icons.location_on, size: 16),
+            const Icon(Icons.location_on, size: 16, color: Colors.red),
             gap(x: 5),
             Text(restaurant.city, style: textTheme.bodyLarge),
           ],
         ),
-        gap(y: 8),
+        gap(y: 5),
         Row(
           children: <Widget>[
-            const Icon(Icons.star, size: 16),
+            const Icon(Icons.star, size: 16, color: Colors.amber),
             gap(x: 5),
             Text(restaurant.rating.toString(), style: textTheme.labelLarge),
           ],
