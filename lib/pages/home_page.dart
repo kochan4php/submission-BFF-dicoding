@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/mixin/logging.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
 import 'package:restaurant_app/model/restaurant.dart';
 import 'package:restaurant_app/routes/routes.dart';
 import 'package:restaurant_app/themes/colors.dart';
 
-class HomePage extends StatelessWidget with Spacing {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget with Spacing, Logging {
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,11 @@ class HomePage extends StatelessWidget with Spacing {
   }
 
   FutureBuilder<String> _buildRestaurantList(
-      BuildContext context, TextTheme textTheme) {
+    BuildContext context,
+    TextTheme textTheme,
+  ) {
+    logger.d('Call API');
+
     return FutureBuilder(
       future: DefaultAssetBundle.of(context).loadString(
         'assets/data/local_restaurant.json',

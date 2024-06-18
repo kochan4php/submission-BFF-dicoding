@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.homePageRoute,
       routes: {
-        Routes.homePageRoute: (context) => const HomePage(),
+        Routes.homePageRoute: (context) => HomePage(),
         Routes.detailPageRoute: (context) => DetailPage(
               restaurant:
                   ModalRoute.of(context)?.settings.arguments as Restaurant,
