@@ -68,22 +68,25 @@ class HomePage extends StatelessWidget with Spacing {
     ListRestaurantProvider provider,
     BuildContext context,
   ) {
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Icon(
-            Icons.signal_wifi_connected_no_internet_4_rounded,
-            size: 100,
-          ),
-          gap(y: 10),
-          Text(
-            provider.message,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Icon(
+              Icons.signal_wifi_connected_no_internet_4_rounded,
+              size: 125,
+            ),
+            gap(y: 10),
+            Text(
+              provider.message,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ],
+        ),
       ),
     );
   }
