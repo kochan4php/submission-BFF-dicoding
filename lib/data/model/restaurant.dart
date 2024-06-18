@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:restaurant_app/model/menu.dart';
+import 'package:restaurant_app/data/model/menu.dart';
 
 class Restaurant {
   final String id;
@@ -46,9 +46,7 @@ class Restaurant {
 }
 
 List<Restaurant> parsedRestaurants(String? json) {
-  if (json == null) {
-    return [];
-  }
+  if (json == null) return [];
 
   final List parsed = jsonDecode(json)['restaurants'];
   return parsed.map((item) => Restaurant.fromJson(item)).toList();

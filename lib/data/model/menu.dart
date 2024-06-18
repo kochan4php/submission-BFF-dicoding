@@ -1,5 +1,5 @@
-import 'package:restaurant_app/model/drink.dart';
-import 'package:restaurant_app/model/food.dart';
+import 'package:restaurant_app/data/model/drink.dart';
+import 'package:restaurant_app/data/model/food.dart';
 
 class Menu {
   final List<Food> foods;
