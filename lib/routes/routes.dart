@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:restaurant_app/data/model/restaurant.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_app/data/models/restaurant.dart';
+import 'package:restaurant_app/data/providers/restaurant/list_restaurant_provider.dart';
 import 'package:restaurant_app/pages/detail_page.dart';
 import 'package:restaurant_app/pages/home_page.dart';
 import 'package:restaurant_app/pages/search_page.dart';
@@ -13,7 +14,10 @@ class Routes {
   static Map<String, WidgetBuilder> init() {
     return {
       homePageRoute: (BuildContext context) {
-        return const HomePage();
+        return ChangeNotifierProvider<ListRestaurantProvider>(
+          create: (context) => ListRestaurantProvider(),
+          child: const HomePage(),
+        );
       },
       detailPageRoute: (BuildContext context) {
         return DetailPage(

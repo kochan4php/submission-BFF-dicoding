@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/data/model/restaurant.dart';
+import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
 
 class DetailPage extends StatefulWidget {
@@ -148,14 +148,14 @@ class _DetailPageState extends State<DetailPage> with Spacing {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          for (int i = 0; i < widget.restaurant.menu.foods.length; i++) ...[
+          for (int i = 0; i < widget.restaurant.menu!.foods.length; i++) ...[
             _buildCardMenu(
               'assets/images/food.png',
-              widget.restaurant.menu.foods[i].name,
+              widget.restaurant.menu!.foods[i].name,
             ),
 
             // Only add spacing if it's not the last item
-            if (i != widget.restaurant.menu.foods.length - 1) gap(x: 10),
+            if (i != widget.restaurant.menu!.foods.length - 1) gap(x: 10),
           ]
         ],
       ),
@@ -167,14 +167,14 @@ class _DetailPageState extends State<DetailPage> with Spacing {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          for (int i = 0; i < widget.restaurant.menu.drinks.length; i++) ...[
+          for (int i = 0; i < widget.restaurant.menu!.drinks.length; i++) ...[
             _buildCardMenu(
               'assets/images/drink.png',
-              widget.restaurant.menu.drinks[i].name,
+              widget.restaurant.menu!.drinks[i].name,
             ),
 
             // Only add spacing if it's not the last item
-            if (i != widget.restaurant.menu.drinks.length - 1) gap(x: 10),
+            if (i != widget.restaurant.menu!.drinks.length - 1) gap(x: 10),
           ]
         ],
       ),

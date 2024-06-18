@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:restaurant_app/routes/routes.dart';
 import 'package:restaurant_app/themes/colors.dart';
 import 'package:restaurant_app/themes/text.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,6 +25,15 @@ class MyApp extends StatelessWidget {
       primaryColor: AppColors.primaryColor,
       scaffoldBackgroundColor: AppColors.secondaryColor,
       textTheme: buildTextTheme(),
+      appBarTheme: buildAppBarTheme(),
+    );
+  }
+
+  AppBarTheme buildAppBarTheme() {
+    return const AppBarTheme(
+      backgroundColor: AppColors.primaryColor,
+      surfaceTintColor: Colors.transparent,
+      foregroundColor: AppColors.textOnPrimaryColor,
     );
   }
 
