@@ -12,24 +12,25 @@ class DataFetchErrorWidget extends StatelessWidget with Spacing {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 35.0),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Icon(
-              Icons.signal_wifi_connected_no_internet_4_rounded,
-              size: 125,
-            ),
-            gap(y: 15),
-            Text(
-              message,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15.0,
+        vertical: 18.0,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Icon(
+            Icons.signal_wifi_connected_no_internet_4_rounded,
+            size: 125,
+          ),
+          gap(y: 15),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+        ],
       ),
     );
   }

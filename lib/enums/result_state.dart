@@ -3,4 +3,5 @@ enum ResultState {
   noData,
   hasData,
   error,
+  notYetExecuted,
 }

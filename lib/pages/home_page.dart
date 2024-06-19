@@ -13,9 +13,18 @@ import 'package:restaurant_app/ui/loader.dart';
 class HomePage extends StatelessWidget with Spacing {
   const HomePage({super.key});
 
+  Future _refreshRestaurants(BuildContext context) async {
+    await Provider.of<ListRestaurantProvider>(context, listen: false)
+        .getRestaurants();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: _buildAppBar(context), body: _buildBody(context));
+    return Scaffold(
+      appBar: _buildAppBar(context),
+      body: _buildBody(context),
+      floatingActionButton: _buildFloatingActionButton(context),
+    );
   }
 
   AppBar _buildAppBar(BuildContext context) {
@@ -33,10 +42,7 @@ class HomePage extends StatelessWidget with Spacing {
       ),
     ];
 
-    return AppBar(
-      title: titleAppBar,
-      actions: appBarAction,
-    );
+    return AppBar(title: titleAppBar, actions: appBarAction);
   }
 
   Widget _buildBody(BuildContext context) {
@@ -56,7 +62,7 @@ class HomePage extends StatelessWidget with Spacing {
           case ResultState.loading:
             return const Loader();
           case ResultState.hasData:
-            return _buildRestaurantList(context, textTheme, restaurants);
+            return _buildRestaurant(context, textTheme, restaurants);
           case ResultState.noData:
           case ResultState.error:
           default:
@@ -66,7 +72,20 @@ class HomePage extends StatelessWidget with Spacing {
     );
   }
 
-  Widget _buildRestaurantList(
+  Widget _buildFloatingActionButton(BuildContext context) {
+    return FloatingActionButton(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(100),
+      ),
+      backgroundColor: AppColors.primaryColor,
+      foregroundColor: AppColors.textOnPrimaryColor,
+      onPressed: () => _refreshRestaurants(context),
+      child: const Icon(Icons.refresh),
+    );
+  }
+
+  Widget _buildRestaurant(
     BuildContext context,
     TextTheme textTheme,
     List<Restaurant> restaurants,

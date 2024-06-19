@@ -29,7 +29,7 @@ class DetailRestaurantProvider with ChangeNotifier {
         _state = ResultState.error;
         notifyListeners();
 
-        _message = 'ID Restaurant not allowed to empty';
+        _message = 'ID Restoran tidak boleh kosong!';
         logger.e(_message);
         return _message;
       }
@@ -42,7 +42,7 @@ class DetailRestaurantProvider with ChangeNotifier {
         _state = ResultState.noData;
         notifyListeners();
 
-        _message = 'Empty data';
+        _message = 'Data tidak ditemukan';
         return _message;
       }
 
@@ -57,7 +57,8 @@ class DetailRestaurantProvider with ChangeNotifier {
       _state = ResultState.error;
       notifyListeners();
 
-      _message = 'Failed to get data. Please check your internet connection!';
+      _message =
+          'Gagal mendapatkan data. Silakan periksa koneksi internet Anda!';
       return _message;
     }
   }

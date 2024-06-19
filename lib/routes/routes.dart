@@ -28,8 +28,15 @@ class Routes {
         );
       },
       searchPageRoute: (BuildContext context) {
-        return ChangeNotifierProvider<SearchRestaurantProvider>(
-          create: (context) => SearchRestaurantProvider(),
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) {
+              return ListRestaurantProvider();
+            }),
+            ChangeNotifierProvider(create: (context) {
+              return SearchRestaurantProvider();
+            }),
+          ],
           child: const SearchPage(),
         );
       },
