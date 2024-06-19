@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/models/restaurant.dart';
+import 'package:restaurant_app/data/providers/restaurant/detail_restaurant_provider.dart';
+import 'package:restaurant_app/enums/result_state.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
+import 'package:restaurant_app/ui/data_fetch_error_widget.dart';
+import 'package:restaurant_app/ui/loader.dart';
 
 class DetailPage extends StatefulWidget {
-  final Restaurant restaurant;
+  final String id;
 
-  const DetailPage({super.key, required this.restaurant});
+  const DetailPage({super.key, required this.id});
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -31,21 +36,47 @@ class _DetailPageState extends State<DetailPage> with Spacing {
   }
 
   Widget _buildBody(BuildContext context) {
+    return Consumer<DetailRestaurantProvider>(
+      builder: (
+        BuildContext context,
+        DetailRestaurantProvider value,
+        Widget? child,
+      ) {
+        ResultState state = value.state;
+
+        switch (state) {
+          case ResultState.loading:
+            return const Loader();
+          case ResultState.hasData:
+            return _buildDataDetailRestaurant(context, value);
+          case ResultState.noData:
+          case ResultState.error:
+          default:
+            return DataFetchErrorWidget(message: value.message);
+        }
+      },
+    );
+  }
+
+  Widget _buildDataDetailRestaurant(
+    BuildContext context,
+    DetailRestaurantProvider value,
+  ) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          _buildRestaurantHeroImage(context),
+          _buildRestaurantImage(context, value.restaurant),
           gap(y: 20.0),
-          _buildRestaurantBody(context),
+          _buildRestaurantBody(context, value.restaurant),
         ],
       ),
     );
   }
 
-  Widget _buildRestaurantHeroImage(BuildContext context) {
+  Widget _buildRestaurantImage(BuildContext context, Restaurant restaurant) {
     return Hero(
-      tag: widget.restaurant.pictureId,
+      tag: restaurant.pictureId,
       child: Stack(
         children: <Widget>[
           ClipRRect(
@@ -54,7 +85,7 @@ class _DetailPageState extends State<DetailPage> with Spacing {
               bottomLeft: Radius.circular(15.0),
             ),
             child: Image.network(
-              widget.restaurant.pictureId,
+              restaurant.pictureId,
               height: 325,
               fit: BoxFit.cover,
             ),
@@ -91,7 +122,7 @@ class _DetailPageState extends State<DetailPage> with Spacing {
     );
   }
 
-  Widget _buildRestaurantBody(BuildContext context) {
+  Widget _buildRestaurantBody(BuildContext context, Restaurant restaurant) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Padding(
@@ -99,7 +130,7 @@ class _DetailPageState extends State<DetailPage> with Spacing {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(widget.restaurant.name, style: textTheme.headlineMedium),
+          Text(restaurant.name, style: textTheme.headlineMedium),
           gap(y: 12.0),
           Row(
             children: <Widget>[
@@ -109,7 +140,7 @@ class _DetailPageState extends State<DetailPage> with Spacing {
                 color: Colors.red,
               ),
               gap(x: 5.0),
-              Text(widget.restaurant.city, style: textTheme.titleLarge),
+              Text(restaurant.city, style: textTheme.titleLarge),
             ],
           ),
           gap(y: 12.0),
@@ -122,59 +153,59 @@ class _DetailPageState extends State<DetailPage> with Spacing {
               ),
               gap(x: 5.0),
               Text(
-                widget.restaurant.rating.toString(),
+                restaurant.rating.toString(),
                 style: textTheme.titleMedium,
               ),
             ],
           ),
           gap(y: 20.0),
-          Text(widget.restaurant.description, style: textTheme.bodyLarge),
+          Text(restaurant.description, style: textTheme.bodyLarge),
           gap(y: 25.0),
           Text('Menu Makanan :', style: textTheme.titleMedium),
           gap(y: 10),
-          _buildListFoodMenu(),
+          _buildListFoodMenu(restaurant),
           gap(y: 20.0),
           Text('Menu Minuman :', style: textTheme.titleMedium),
           gap(y: 10.0),
-          _buildListDrinkMenu(),
+          _buildListDrinkMenu(restaurant),
           gap(y: 18.0),
         ],
       ),
     );
   }
 
-  Widget _buildListFoodMenu() {
+  Widget _buildListFoodMenu(Restaurant restaurant) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          for (int i = 0; i < widget.restaurant.menu!.foods.length; i++) ...[
+          for (int i = 0; i < restaurant.menu!.foods.length; i++) ...[
             _buildCardMenu(
               'assets/images/food.png',
-              widget.restaurant.menu!.foods[i].name,
+              restaurant.menu!.foods[i].name,
             ),
 
             // Only add spacing if it's not the last item
-            if (i != widget.restaurant.menu!.foods.length - 1) gap(x: 10),
+            if (i != restaurant.menu!.foods.length - 1) gap(x: 10),
           ]
         ],
       ),
     );
   }
 
-  Widget _buildListDrinkMenu() {
+  Widget _buildListDrinkMenu(Restaurant restaurant) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          for (int i = 0; i < widget.restaurant.menu!.drinks.length; i++) ...[
+          for (int i = 0; i < restaurant.menu!.drinks.length; i++) ...[
             _buildCardMenu(
               'assets/images/drink.png',
-              widget.restaurant.menu!.drinks[i].name,
+              restaurant.menu!.drinks[i].name,
             ),
 
             // Only add spacing if it's not the last item
-            if (i != widget.restaurant.menu!.drinks.length - 1) gap(x: 10),
+            if (i != restaurant.menu!.drinks.length - 1) gap(x: 10),
           ]
         ],
       ),

@@ -7,6 +7,8 @@ import 'package:restaurant_app/mixin/spacing.dart';
 import 'package:restaurant_app/routes/routes.dart';
 import 'package:restaurant_app/themes/colors.dart';
 import 'package:restaurant_app/ui/card_restaurant.dart';
+import 'package:restaurant_app/ui/data_fetch_error_widget.dart';
+import 'package:restaurant_app/ui/loader.dart';
 
 class HomePage extends StatelessWidget with Spacing {
   const HomePage({super.key});
@@ -43,59 +45,24 @@ class HomePage extends StatelessWidget with Spacing {
     return Consumer<ListRestaurantProvider>(
       builder: (
         BuildContext context,
-        ListRestaurantProvider provider,
+        ListRestaurantProvider value,
         Widget? child,
       ) {
-        ResultState state = provider.state;
+        ResultState state = value.state;
         List<Restaurant> restaurants =
-            state == ResultState.hasData ? provider.restaurants : [];
+            state == ResultState.hasData ? value.restaurants : [];
 
         switch (state) {
           case ResultState.loading:
-            return _buildLoader();
+            return const Loader();
           case ResultState.hasData:
             return _buildRestaurantList(context, textTheme, restaurants);
           case ResultState.noData:
           case ResultState.error:
           default:
-            return _buildFailedGetDataRestaurant(provider, context);
+            return DataFetchErrorWidget(message: value.message);
         }
       },
-    );
-  }
-
-  Widget _buildFailedGetDataRestaurant(
-    ListRestaurantProvider provider,
-    BuildContext context,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Icon(
-              Icons.signal_wifi_connected_no_internet_4_rounded,
-              size: 125,
-            ),
-            gap(y: 10),
-            Text(
-              provider.message,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLoader() {
-    return const Center(
-      child: CircularProgressIndicator(
-        color: AppColors.primaryColor,
-      ),
     );
   }
 

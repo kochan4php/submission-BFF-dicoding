@@ -11,14 +11,14 @@ class ListRestaurantProvider with ChangeNotifier {
   final RestaurantController restaurantController = RestaurantController();
 
   ListRestaurantProvider() {
-    getRestaurants();
+    _getRestaurants();
   }
 
   String get message => _message;
   ResultState get state => _state;
   List<Restaurant> get restaurants => _listRestaurant;
 
-  Future getRestaurants() async {
+  Future _getRestaurants() async {
     _state = ResultState.loading;
     notifyListeners();
 
@@ -30,13 +30,13 @@ class ListRestaurantProvider with ChangeNotifier {
         notifyListeners();
 
         _message = 'Empty Data';
-        return message;
+        return _message;
       } else {
         _state = ResultState.hasData;
         notifyListeners();
 
         _listRestaurant = data;
-        return restaurants;
+        return _listRestaurant;
       }
     } catch (error) {
       logger.e(error);
@@ -45,7 +45,7 @@ class ListRestaurantProvider with ChangeNotifier {
       notifyListeners();
 
       _message = 'Failed to get data. Please check your internet connection!';
-      return message;
+      return _message;
     }
   }
 }

@@ -75,7 +75,7 @@ class CardRestaurant extends StatelessWidget with Spacing {
           Navigator.pushNamed(
             context,
             Routes.detailPageRoute,
-            arguments: restaurant,
+            arguments: restaurant.id,
           );
         },
         splashColor: Colors.transparent,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/data/providers/restaurant/detail_restaurant_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/list_restaurant_provider.dart';
+import 'package:restaurant_app/data/providers/restaurant/search_restaurant_provider.dart';
 import 'package:restaurant_app/pages/detail_page.dart';
 import 'package:restaurant_app/pages/home_page.dart';
 import 'package:restaurant_app/pages/search_page.dart';
@@ -21,17 +21,17 @@ class Routes {
         );
       },
       detailPageRoute: (BuildContext context) {
+        String id = ModalRoute.of(context)?.settings.arguments as String;
         return ChangeNotifierProvider<DetailRestaurantProvider>(
-          create: (context) => DetailRestaurantProvider(),
-          child: DetailPage(
-            restaurant: ModalRoute.of(
-              context,
-            )?.settings.arguments as Restaurant,
-          ),
+          create: (context) => DetailRestaurantProvider(idRestaurant: id),
+          child: DetailPage(id: id),
         );
       },
       searchPageRoute: (BuildContext context) {
-        return const SearchPage();
+        return ChangeNotifierProvider<SearchRestaurantProvider>(
+          create: (context) => SearchRestaurantProvider(),
+          child: const SearchPage(),
+        );
       },
     };
   }
