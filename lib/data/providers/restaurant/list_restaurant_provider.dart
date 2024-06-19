@@ -31,13 +31,13 @@ class ListRestaurantProvider with ChangeNotifier {
 
         _message = 'Empty Data';
         return _message;
-      } else {
-        _state = ResultState.hasData;
-        notifyListeners();
-
-        _listRestaurant = data;
-        return _listRestaurant;
       }
+
+      _state = ResultState.hasData;
+      notifyListeners();
+
+      _listRestaurant = data;
+      return _listRestaurant;
     } catch (error) {
       logger.e(error);
 
