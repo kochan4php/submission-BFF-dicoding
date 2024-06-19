@@ -44,7 +44,7 @@ class ListRestaurantProvider with ChangeNotifier {
       _state = ResultState.error;
       notifyListeners();
 
-      _message = 'Failed to get data. Please check your internet connection';
+      _message = 'Failed to get data. Please check your internet connection!';
       return message;
     }
   }

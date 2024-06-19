@@ -33,6 +33,23 @@ class RestaurantController {
     }
   }
 
+  Future<Restaurant> getDetail({required String id}) async {
+    logger.d('Call API Get Detail Restaurant');
+
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/detail/$id'));
+
+      if (response.statusCode == 200) {
+        return parsedDetailRestaurant(response.body);
+      } else {
+        throw Exception('Failed load data');
+      }
+    } catch (error) {
+      logger.e(error);
+      throw Exception(error);
+    }
+  }
+
   Future<List<Restaurant>> search({String query = ''}) async {
     logger.d('Call API Search Restaurants');
 
@@ -55,5 +72,12 @@ class RestaurantController {
 
     final List parsed = jsonDecode(json)['restaurants'];
     return parsed.map((item) => Restaurant.fromJson(item)).toList();
+  }
+
+  Restaurant parsedDetailRestaurant(String? json) {
+    if (json == null) return {} as Restaurant;
+
+    final parsed = jsonDecode(json)['restaurant'];
+    return Restaurant.fromJson(parsed);
   }
 }
