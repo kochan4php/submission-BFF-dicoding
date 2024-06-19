@@ -30,14 +30,14 @@ class ListRestaurantProvider with ChangeNotifier {
         notifyListeners();
 
         _message = 'Data tidak ditemukan.';
-        return _message;
+        return;
       }
 
       _state = ResultState.hasData;
       notifyListeners();
 
       _listRestaurant = data;
-      return _listRestaurant;
+      return;
     } catch (error) {
       logger.e(error);
 
@@ -46,7 +46,7 @@ class ListRestaurantProvider with ChangeNotifier {
 
       _message =
           'Gagal mendapatkan data. Silakan periksa koneksi internet Anda!';
-      return _message;
+      return;
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:http/http.dart' as http;
 import 'package:restaurant_app/data/models/restaurant.dart';
@@ -60,6 +61,28 @@ class RestaurantController {
         return parsedListRestaurants(response.body);
       } else {
         throw Exception('Failed to search data');
+      }
+    } catch (error) {
+      logger.e(error);
+      throw Exception(error);
+    }
+  }
+
+  Future<List<Restaurant>> getRandom() async {
+    logger.d('Call API Get Random Restaurants');
+
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/list'));
+
+      if (response.statusCode == 200) {
+        List<Restaurant> restaurants = List.from(
+          parsedListRestaurants(response.body),
+        );
+
+        restaurants.shuffle(Random());
+        return restaurants.take(5).toList();
+      } else {
+        throw Exception('Failed load data');
       }
     } catch (error) {
       logger.e(error);

@@ -31,7 +31,7 @@ class DetailRestaurantProvider with ChangeNotifier {
 
         _message = 'ID Restoran tidak boleh kosong!';
         logger.e(_message);
-        return _message;
+        return;
       }
 
       final Restaurant data = await _restaurantController.getDetail(
@@ -43,14 +43,14 @@ class DetailRestaurantProvider with ChangeNotifier {
         notifyListeners();
 
         _message = 'Data tidak ditemukan';
-        return _message;
+        return;
       }
 
       _state = ResultState.hasData;
       notifyListeners();
 
       _restaurant = data;
-      return _restaurant;
+      return;
     } catch (error) {
       logger.e(error);
 
@@ -59,7 +59,7 @@ class DetailRestaurantProvider with ChangeNotifier {
 
       _message =
           'Gagal mendapatkan data. Silakan periksa koneksi internet Anda!';
-      return _message;
+      return;
     }
   }
 }

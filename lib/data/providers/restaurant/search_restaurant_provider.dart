@@ -15,7 +15,7 @@ class SearchRestaurantProvider with ChangeNotifier {
   List<Restaurant> get restaurants => _listRestaurants;
   ResultState get state => _state;
 
-  Future<dynamic> searchRestaurant({String query = ''}) async {
+  Future searchRestaurant({String query = ''}) async {
     logger.d(query);
 
     _state = ResultState.loading;
@@ -24,6 +24,16 @@ class SearchRestaurantProvider with ChangeNotifier {
     _message = 'Mencari...';
 
     try {
+      if (query.isEmpty) {
+        final data = await _restaurantController.getRandom();
+
+        _state = ResultState.hasData;
+        notifyListeners();
+
+        _listRestaurants = data;
+        return;
+      }
+
       final data = await _restaurantController.search(query: query);
 
       if (data.isEmpty) {
@@ -31,14 +41,14 @@ class SearchRestaurantProvider with ChangeNotifier {
         notifyListeners();
 
         _message = 'Restoran yang kamu cari tidak ditemukan.';
-        return _message;
+        return;
       }
 
       _state = ResultState.hasData;
       notifyListeners();
 
       _listRestaurants = data;
-      return _listRestaurants;
+      return;
     } catch (error) {
       logger.e(error);
 
@@ -46,7 +56,7 @@ class SearchRestaurantProvider with ChangeNotifier {
       notifyListeners();
 
       _message = 'Gagal mencari data. Silakan periksa koneksi internet Anda!';
-      return _message;
+      return;
     }
   }
 }
