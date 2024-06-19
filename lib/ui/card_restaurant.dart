@@ -16,32 +16,29 @@ class CardRestaurant extends StatelessWidget with Spacing {
 
   @override
   Widget build(BuildContext context) {
-    final Widget restaurantImage = Hero(
-      tag: restaurant.pictureId,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
-        child: Image.network(
-          restaurant.pictureId,
-          fit: BoxFit.fill,
-          loadingBuilder: (
-            context,
-            child,
-            loadingProgress,
-          ) {
-            if (loadingProgress != null) {
-              return const SizedBox(
-                height: 70,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.primaryColor,
-                  ),
+    final Widget restaurantImage = ClipRRect(
+      borderRadius: BorderRadius.circular(10.0),
+      child: Image.network(
+        restaurant.pictureId,
+        fit: BoxFit.fill,
+        loadingBuilder: (
+          context,
+          child,
+          loadingProgress,
+        ) {
+          if (loadingProgress != null) {
+            return const SizedBox(
+              height: 70,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primaryColor,
                 ),
-              );
-            } else {
-              return child;
-            }
-          },
-        ),
+              ),
+            );
+          } else {
+            return child;
+          }
+        },
       ),
     );
 

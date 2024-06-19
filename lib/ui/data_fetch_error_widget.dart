@@ -12,7 +12,7 @@ class DataFetchErrorWidget extends StatelessWidget with Spacing {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 35.0),
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -22,7 +22,7 @@ class DataFetchErrorWidget extends StatelessWidget with Spacing {
               Icons.signal_wifi_connected_no_internet_4_rounded,
               size: 125,
             ),
-            gap(y: 10),
+            gap(y: 15),
             Text(
               message,
               textAlign: TextAlign.center,

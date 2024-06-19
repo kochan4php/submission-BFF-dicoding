@@ -8,7 +8,7 @@ class ListRestaurantProvider with ChangeNotifier {
   String _message = '';
   late ResultState _state;
   late List<Restaurant> _listRestaurant;
-  final RestaurantController restaurantController = RestaurantController();
+  final RestaurantController _restaurantController = RestaurantController();
 
   ListRestaurantProvider() {
     _getRestaurants();
@@ -23,7 +23,7 @@ class ListRestaurantProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      final List<Restaurant> data = await restaurantController.getAll();
+      final List<Restaurant> data = await _restaurantController.getAll();
 
       if (data.isEmpty) {
         _state = ResultState.noData;

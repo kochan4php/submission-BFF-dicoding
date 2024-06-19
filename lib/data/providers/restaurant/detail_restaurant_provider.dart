@@ -10,7 +10,7 @@ class DetailRestaurantProvider with ChangeNotifier {
   String _message = '';
   late ResultState _state;
   late Restaurant _restaurant;
-  final RestaurantController restaurantController = RestaurantController();
+  final RestaurantController _restaurantController = RestaurantController();
 
   DetailRestaurantProvider({required this.idRestaurant}) {
     _getDetailRestaurant();
@@ -34,7 +34,7 @@ class DetailRestaurantProvider with ChangeNotifier {
         return _message;
       }
 
-      final Restaurant data = await restaurantController.getDetail(
+      final Restaurant data = await _restaurantController.getDetail(
         id: idRestaurant,
       );
 
