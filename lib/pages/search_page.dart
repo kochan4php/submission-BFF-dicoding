@@ -123,6 +123,7 @@ class _SearchPageState extends State<SearchPage> with Spacing {
       padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
       child: TextField(
         controller: _searchController,
+        autofocus: true,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100.0),

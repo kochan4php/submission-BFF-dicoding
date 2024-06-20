@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:restaurant_app/data/providers/restaurant/detail_restaurant_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/list_restaurant_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/search_restaurant_provider.dart';
@@ -28,15 +29,8 @@ class Routes {
         );
       },
       searchPageRoute: (BuildContext context) {
-        return MultiProvider(
-          providers: [
-            ChangeNotifierProvider(create: (context) {
-              return ListRestaurantProvider();
-            }),
-            ChangeNotifierProvider(create: (context) {
-              return SearchRestaurantProvider();
-            }),
-          ],
+        return ChangeNotifierProvider(
+          create: (context) => SearchRestaurantProvider(),
           child: const SearchPage(),
         );
       },
