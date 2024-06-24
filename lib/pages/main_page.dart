@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/pages/bookmark_page.dart';
 import 'package:restaurant_app/pages/home_page.dart';
 import 'package:restaurant_app/pages/search_page.dart';
+import 'package:restaurant_app/pages/settings_page.dart';
 import 'package:restaurant_app/ui/main_page/bottom_navbar.dart';
 
 class MainPage extends StatefulWidget {
@@ -26,6 +27,7 @@ class _MainPageState extends State<MainPage> {
       const HomePage(),
       const SearchPage(),
       const BookmarkPage(),
+      const SettingsPage(),
     ];
 
     return Scaffold(
