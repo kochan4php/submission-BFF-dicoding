@@ -2,18 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:restaurant_app/data/db/tables/bookmark_table.dart';
 import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/enums/result_state.dart';
+import 'package:restaurant_app/utils/logger.dart';
 
 class BookmarkProvider with ChangeNotifier {
   BookmarkProvider() {
     _getAllBookmarks();
   }
 
-  bool _isBookmark = false;
   late ResultState _state;
   late List<Restaurant> _restaurants;
   late final BookmarkTable _table = BookmarkTable();
 
-  bool get isBookmark => _isBookmark;
   ResultState get state => _state;
   List<Restaurant> get restaurants => _restaurants;
 
@@ -32,7 +31,7 @@ class BookmarkProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Restaurant> getBookmarkById(String id) async {
+  Future<Map> getBookmarkById(String id) async {
     return await _table.getById(id);
   }
 
@@ -51,12 +50,17 @@ class BookmarkProvider with ChangeNotifier {
     _getAllBookmarks();
   }
 
+  Future<bool> isBookmarked(String id) async {
+    final result = await _table.getById(id);
+    return result.isNotEmpty;
+  }
+
   void setBookmark(Restaurant restaurant) async {
-    if (!_isBookmark) {
-      _isBookmark = true;
+    bool isBookmark = await isBookmarked(restaurant.id);
+
+    if (!isBookmark) {
       insertBookmark(restaurant);
     } else {
-      _isBookmark = false;
       deleteBookmark(restaurant.id);
     }
   }

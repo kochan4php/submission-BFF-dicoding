@@ -46,30 +46,37 @@ class RestaurantImage extends StatelessWidget with Spacing {
                         icon: const Icon(Icons.arrow_back),
                       ),
                     ),
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: IconButton(
-                        onPressed: () {
-                          value.setBookmark(restaurant);
+                    FutureBuilder(
+                      future: value.isBookmarked(restaurant.id),
+                      builder: (context, snapshot) {
+                        bool isBookmark = snapshot.data ?? false;
 
-                          String sentences = value.isBookmark
-                              ? 'ditambahkan ke'
-                              : 'dihapus dari';
+                        return CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: IconButton(
+                            onPressed: () {
+                              value.setBookmark(restaurant);
 
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Berhasil $sentences bookmark'),
-                              duration: const Duration(seconds: 1),
+                              String sentences = isBookmark
+                                  ? 'ditambahkan ke'
+                                  : 'dihapus dari';
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Berhasil $sentences bookmark'),
+                                  duration: const Duration(seconds: 1),
+                                ),
+                              );
+                            },
+                            icon: Icon(
+                              isBookmark
+                                  ? Icons.bookmark
+                                  : Icons.bookmark_border,
+                              color: Colors.black,
                             ),
-                          );
-                        },
-                        icon: Icon(
-                          value.isBookmark
-                              ? Icons.bookmark
-                              : Icons.bookmark_border,
-                          color: Colors.black,
-                        ),
-                      ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
