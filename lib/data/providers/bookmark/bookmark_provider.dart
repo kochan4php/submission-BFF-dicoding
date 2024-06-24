@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:restaurant_app/data/db/tables/bookmark_table.dart';
 import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/enums/result_state.dart';
-import 'package:restaurant_app/utils/logger.dart';
 
 class BookmarkProvider with ChangeNotifier {
   BookmarkProvider() {
