@@ -6,10 +6,7 @@ import 'package:restaurant_app/pages/main_page.dart';
 
 class Routes {
   static const String mainPageRoute = '/';
-  static const String homePageRoute = '/homePageRoute';
   static const String detailPageRoute = '/detailPageRoute';
-  static const String searchPageRoute = '/searchPageRoute';
-  static const String bookmarkPageRoute = '/bookmarkPageRoute';
 
   static Map<String, WidgetBuilder> init() {
     return {
