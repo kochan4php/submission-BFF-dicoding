@@ -52,19 +52,10 @@ class BookmarkPage extends StatelessWidget with Spacing {
   ) {
     return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15.0,
-          vertical: 18.0,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              'Rekomendasi untuk mu!',
-              style: textTheme.headlineMedium,
-              textAlign: TextAlign.center,
-            ),
-            gap(y: 18.0),
             Column(
               children: restaurants.map((item) {
                 return CardRestaurant(restaurant: item, textTheme: textTheme);

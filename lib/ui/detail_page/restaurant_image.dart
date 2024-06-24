@@ -28,7 +28,7 @@ class RestaurantImage extends StatelessWidget with Spacing {
                 bottomLeft: Radius.circular(15.0),
               ),
               child: Image.network(
-                restaurant.pictureId,
+                '${Restaurant.pictureUrl}/${restaurant.pictureId}',
                 height: 325,
                 fit: BoxFit.cover,
               ),
@@ -51,12 +51,23 @@ class RestaurantImage extends StatelessWidget with Spacing {
                       child: IconButton(
                         onPressed: () {
                           value.setBookmark(restaurant);
+
+                          String sentences = value.isBookmark
+                              ? 'ditambahkan ke'
+                              : 'dihapus dari';
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Berhasil $sentences bookmark'),
+                              duration: const Duration(seconds: 1),
+                            ),
+                          );
                         },
                         icon: Icon(
                           value.isBookmark
                               ? Icons.bookmark
                               : Icons.bookmark_border,
-                          color: Colors.blueGrey,
+                          color: Colors.black,
                         ),
                       ),
                     ),
