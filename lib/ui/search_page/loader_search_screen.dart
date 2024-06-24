@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/providers/restaurant/search_restaurant_provider.dart';
-import 'package:restaurant_app/ui/search_page/status_message_screen.dart';
+import 'package:restaurant_app/themes/colors.dart';
 
 class LoaderSearchScreen extends StatelessWidget {
   final SearchRestaurantProvider provider;
@@ -12,9 +12,10 @@ class LoaderSearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StatusMessageScreen(
-      provider: provider,
-      icon: Icons.content_paste_search,
+    return const Expanded(
+      child: Center(
+        child: CircularProgressIndicator(color: AppColors.primaryColor),
+      ),
     );
   }
 }

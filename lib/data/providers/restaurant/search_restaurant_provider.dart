@@ -5,6 +5,10 @@ import 'package:restaurant_app/enums/result_state.dart';
 import 'package:restaurant_app/utils/logger.dart';
 
 class SearchRestaurantProvider with ChangeNotifier {
+  SearchRestaurantProvider() {
+    searchRestaurant();
+  }
+
   String _message = '';
   late List<Restaurant> _listRestaurants;
   ResultState _state = ResultState.notYetExecuted;

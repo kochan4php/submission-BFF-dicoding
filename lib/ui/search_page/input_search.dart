@@ -18,7 +18,7 @@ class InputSearch extends StatelessWidget {
       padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
       child: TextField(
         controller: searchController,
-        autofocus: true,
+        autofocus: false,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100.0),
@@ -36,7 +36,6 @@ class InputSearch extends StatelessWidget {
               searchController.clear();
               provider.searchRestaurant();
             },
-            splashColor: Colors.transparent,
           ),
         ),
         onSubmitted: (String text) {
