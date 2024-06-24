@@ -1,0 +1,4 @@
+enum FetchErrorType {
+  noInet,
+  noData,
+}
