@@ -22,6 +22,8 @@ class Restaurant {
     this.menu,
   });
 
+  String get picture => '$pictureUrl/$pictureId';
+
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     if (json['menus'] != null) {
       return Restaurant(

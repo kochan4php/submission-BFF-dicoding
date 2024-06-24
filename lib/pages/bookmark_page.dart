@@ -6,6 +6,7 @@ import 'package:restaurant_app/enums/result_state.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
 import 'package:restaurant_app/ui/card_restaurant.dart';
 import 'package:restaurant_app/ui/data_fetch_error_widget.dart';
+import 'package:restaurant_app/ui/loader.dart';
 
 class BookmarkPage extends StatelessWidget with Spacing {
   const BookmarkPage({super.key});
@@ -27,6 +28,8 @@ class BookmarkPage extends StatelessWidget with Spacing {
               state == ResultState.hasData ? value.restaurants : [];
 
           switch (state) {
+            case ResultState.loading:
+              return const Loader();
             case ResultState.hasData:
               return _buildRestaurant(context, textTheme, restaurants);
             case ResultState.noData:

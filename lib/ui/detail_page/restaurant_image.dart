@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/data/providers/bookmark/bookmark_provider.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
+import 'package:restaurant_app/ui/detail_page/custom_app_bar.dart';
 
 class RestaurantImage extends StatelessWidget with Spacing {
   final Restaurant restaurant;
@@ -28,60 +29,12 @@ class RestaurantImage extends StatelessWidget with Spacing {
                 bottomLeft: Radius.circular(15.0),
               ),
               child: Image.network(
-                '${Restaurant.pictureUrl}/${restaurant.pictureId}',
+                restaurant.picture,
                 height: 325,
                 fit: BoxFit.cover,
               ),
             ),
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.arrow_back),
-                      ),
-                    ),
-                    FutureBuilder(
-                      future: value.isBookmarked(restaurant.id),
-                      builder: (context, snapshot) {
-                        bool isBookmark = snapshot.data ?? false;
-
-                        return CircleAvatar(
-                          backgroundColor: Colors.white,
-                          child: IconButton(
-                            onPressed: () {
-                              value.setBookmark(restaurant);
-
-                              String sentences = isBookmark
-                                  ? 'ditambahkan ke'
-                                  : 'dihapus dari';
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Berhasil $sentences bookmark'),
-                                  duration: const Duration(seconds: 1),
-                                ),
-                              );
-                            },
-                            icon: Icon(
-                              isBookmark
-                                  ? Icons.bookmark
-                                  : Icons.bookmark_border,
-                              color: Colors.black,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            CustomAppBar(provider: value, restaurant: restaurant),
           ],
         );
       },

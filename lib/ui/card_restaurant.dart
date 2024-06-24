@@ -19,7 +19,7 @@ class CardRestaurant extends StatelessWidget with Spacing {
     final Widget restaurantImage = ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
       child: Image.network(
-        '${Restaurant.pictureUrl}/${restaurant.pictureId}',
+        restaurant.picture,
         fit: BoxFit.fill,
         loadingBuilder: (
           context,
