@@ -1,7 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-abstract class BaseDatabase {
+abstract class BaseDatabase<T> {
   Database? _database;
   final String tableName;
 
@@ -42,4 +42,10 @@ abstract class BaseDatabase {
     final db = await database;
     await db!.execute('DROP TABLE IF EXISTS $tableName');
   }
+
+  Future delete(String id);
+  Future<List<T>> getAll();
+  Future<Map> getById(String id);
+  Future insert(T data);
+  Future update(String id, T data);
 }

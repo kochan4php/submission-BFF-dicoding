@@ -1,9 +1,6 @@
 import 'package:restaurant_app/data/models/menu.dart';
 
 class Restaurant {
-  static const String pictureUrl =
-      'https://restaurant-api.dicoding.dev/images/large';
-
   final String id;
   final String name;
   final String description;
@@ -22,7 +19,10 @@ class Restaurant {
     this.menu,
   });
 
-  String get picture => '$pictureUrl/$pictureId';
+  String get picture {
+    String pictureUrl = 'https://restaurant-api.dicoding.dev/images/large';
+    return '$pictureUrl/$pictureId';
+  }
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     if (json['menus'] != null) {
