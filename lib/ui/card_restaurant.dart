@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
 import 'package:restaurant_app/routes/routes.dart';
-import 'package:restaurant_app/themes/colors.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CardRestaurant extends StatelessWidget with Spacing {
   final Restaurant restaurant;
@@ -18,26 +19,36 @@ class CardRestaurant extends StatelessWidget with Spacing {
   Widget build(BuildContext context) {
     final Widget restaurantImage = ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
-      child: Image.network(
-        restaurant.picture,
-        fit: BoxFit.fill,
-        loadingBuilder: (
-          context,
-          child,
-          loadingProgress,
-        ) {
-          if (loadingProgress != null) {
-            return const SizedBox(
-              height: 70,
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryColor,
+      child: CachedNetworkImage(
+        imageUrl: restaurant.picture,
+        height: 85,
+        fit: BoxFit.cover,
+        placeholder: (BuildContext context, String url) {
+          return Shimmer.fromColors(
+            baseColor: Colors.grey[400]!,
+            highlightColor: Colors.grey[100]!,
+            enabled: true,
+            child: Container(height: 85, color: Colors.white),
+          );
+        },
+        errorWidget: (BuildContext context, String url, Object? error) {
+          return Container(
+            height: 85,
+            width: double.infinity,
+            color: Colors.grey[200],
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Icon(Icons.error, color: Colors.red, size: 40),
+                Text(
+                  'Error Network',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 13),
                 ),
-              ),
-            );
-          } else {
-            return child;
-          }
+              ],
+            ),
+          );
         },
       ),
     );
