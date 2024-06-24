@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/ui/detail_page/build_body_detail_page.dart';
+import 'package:restaurant_app/ui/detail_page/detail_page_body.dart';
 
 class DetailPage extends StatelessWidget {
   final String id;
@@ -8,6 +8,6 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: BuildBodyDetailPage());
+    return const Scaffold(body: DetailPageBody());
   }
 }
