@@ -1,6 +1,9 @@
 import 'package:restaurant_app/data/models/menu.dart';
 
 class Restaurant {
+  static const String pictureUrl =
+      'https://restaurant-api.dicoding.dev/images/large';
+
   final String id;
   final String name;
   final String description;
@@ -20,8 +23,6 @@ class Restaurant {
   });
 
   factory Restaurant.fromJson(Map<String, dynamic> json) {
-    String pictureUrl = 'https://restaurant-api.dicoding.dev/images/large';
-
     if (json['menus'] != null) {
       return Restaurant(
         id: json['id'],
@@ -50,7 +51,7 @@ class Restaurant {
         'id': id,
         'name': name,
         'description': description,
-        'pictureId': pictureId,
+        'pictureId': '$pictureUrl/$pictureId',
         'city': city,
         'rating': rating.toDouble(),
         'menu': menu,
@@ -60,10 +61,21 @@ class Restaurant {
         'id': id,
         'name': name,
         'description': description,
-        'pictureId': pictureId,
+        'pictureId': '$pictureUrl/$pictureId',
         'city': city,
         'rating': rating.toDouble(),
       };
     }
+  }
+
+  Map<String, dynamic> toJsonWithoutMenu() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'pictureId': '$pictureUrl/$pictureId',
+      'city': city,
+      'rating': rating.toDouble(),
+    };
   }
 }

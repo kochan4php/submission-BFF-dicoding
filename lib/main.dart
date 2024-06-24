@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_app/data/providers/bookmark/bookmark_provider.dart';
 import 'package:restaurant_app/routes/routes.dart';
 import 'package:restaurant_app/themes/colors.dart';
 import 'package:restaurant_app/themes/text.dart';
@@ -12,11 +14,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: buildThemeData(),
-      debugShowCheckedModeBanner: false,
-      initialRoute: Routes.homePageRoute,
-      routes: Routes.init(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => BookmarkProvider()),
+      ],
+      child: MaterialApp(
+        theme: buildThemeData(),
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routes.homePageRoute,
+        routes: Routes.init(),
+      ),
     );
   }
 

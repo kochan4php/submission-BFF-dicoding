@@ -17,22 +17,22 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> with Spacing {
-  bool isFavorite = false;
+  bool isBookmark = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BuildBodyDetailPage(
-        isFavorite: isFavorite,
+        isBookmark: isBookmark,
         onPressed: handlePressedFavoriteButton,
       ),
     );
   }
 
   void handlePressedFavoriteButton() {
-    setState(() => isFavorite = !isFavorite);
+    setState(() => isBookmark = !isBookmark);
 
-    String sentences = isFavorite ? 'ditambahkan ke' : 'dihapus dari';
+    String sentences = isBookmark ? 'ditambahkan ke' : 'dihapus dari';
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -44,12 +44,12 @@ class _DetailPageState extends State<DetailPage> with Spacing {
 }
 
 class BuildBodyDetailPage extends StatelessWidget {
-  final bool isFavorite;
+  final bool isBookmark;
   final VoidCallback onPressed;
 
   const BuildBodyDetailPage({
     super.key,
-    required this.isFavorite,
+    required this.isBookmark,
     required this.onPressed,
   });
 
@@ -67,17 +67,11 @@ class BuildBodyDetailPage extends StatelessWidget {
           case ResultState.loading:
             return const Loader();
           case ResultState.hasData:
-            return DataDetailRestaurant(
-              provider: value,
-              isFavorite: isFavorite,
-              onPressed: onPressed,
-            );
+            return DataDetailRestaurant(provider: value);
           case ResultState.noData:
           case ResultState.error:
           default:
-            return DataFetchErrorWidget(
-              message: value.message,
-            );
+            return DataFetchErrorWidget(message: value.message);
         }
       },
     );

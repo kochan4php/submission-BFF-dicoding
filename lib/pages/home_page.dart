@@ -32,6 +32,16 @@ class HomePage extends StatelessWidget with Spacing {
     final List<Widget> appBarAction = [
       IconButton(
         onPressed: () {
+          Navigator.pushNamed(context, Routes.bookmarkPageRoute);
+        },
+        icon: const Icon(
+          Icons.bookmark_border,
+          size: 27,
+          color: AppColors.textOnPrimaryColor,
+        ),
+      ),
+      IconButton(
+        onPressed: () {
           Navigator.pushNamed(context, Routes.searchPageRoute);
         },
         icon: const Icon(
