@@ -18,13 +18,14 @@ class BottomNavbar extends StatelessWidget {
       elevation: 0,
       backgroundColor: Colors.white,
       selectedItemColor: AppColors.textPrimaryColor,
+      showUnselectedLabels: false,
       currentIndex: currentIndex,
       type: BottomNavigationBarType.fixed,
       selectedLabelStyle: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w600,
       ),
-      iconSize: 28,
+      iconSize: 27,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home_rounded),

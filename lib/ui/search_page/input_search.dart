@@ -15,7 +15,7 @@ class InputSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
+      padding: const EdgeInsets.all(15.0),
       child: TextField(
         controller: searchController,
         autofocus: false,

@@ -16,10 +16,7 @@ class RestaurantSearchResult extends StatelessWidget {
 
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15.0,
-          vertical: 18.0,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: ListView(
           children: restaurants.map((item) {
             return CardRestaurant(restaurant: item, textTheme: textTheme);

@@ -80,7 +80,7 @@ class RestaurantController {
         );
 
         restaurants.shuffle(Random());
-        return restaurants.take(5).toList();
+        return restaurants.take(10).toList();
       } else {
         throw Exception('Failed load data');
       }
