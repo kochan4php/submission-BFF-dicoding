@@ -26,6 +26,7 @@ class SettingsPageBody extends StatelessWidget {
                       content: const Text(
                         'Fitur mode gelap sedang dalam tahap pengembangan!',
                       ),
+                      backgroundColor: Colors.white,
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => Navigator.pop(context),
@@ -40,9 +41,13 @@ class SettingsPageBody extends StatelessWidget {
           ),
           ListTile(
             title: const Text(
-              'Notifikasi Rekomendasi Restoran',
+              'Notifikasi Rekomendasi',
               style: TextStyle(fontSize: 17),
             ),
+            subtitle: const Text(
+              'Dapatkan rekomendasi restoran setiap harinya',
+            ),
+            isThreeLine: true,
             trailing: Switch(
               value: false,
               onChanged: (bool value) {
@@ -54,6 +59,7 @@ class SettingsPageBody extends StatelessWidget {
                       content: const Text(
                         'Fitur notifikasi rekomendasi restoran sedang dalam tahap pengembangan!',
                       ),
+                      backgroundColor: Colors.white,
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => Navigator.pop(context),
