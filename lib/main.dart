@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/providers/bookmark/bookmark_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/list_restaurant_provider.dart';
@@ -17,11 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => ListRestaurantProvider()),
-        ChangeNotifierProvider(create: (context) => SearchRestaurantProvider()),
-        ChangeNotifierProvider(create: (context) => BookmarkProvider()),
-      ],
+      providers: listProviders,
       child: MaterialApp(
         theme: buildThemeData(),
         debugShowCheckedModeBanner: false,
@@ -31,12 +28,21 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  List<SingleChildWidget> get listProviders {
+    return [
+      ChangeNotifierProvider(create: (context) => ListRestaurantProvider()),
+      ChangeNotifierProvider(create: (context) => SearchRestaurantProvider()),
+      ChangeNotifierProvider(create: (context) => BookmarkProvider()),
+    ];
+  }
+
   ThemeData buildThemeData() {
     return ThemeData(
       primaryColor: AppColors.primaryColor,
-      scaffoldBackgroundColor: AppColors.secondaryColor,
+      scaffoldBackgroundColor: Colors.white,
       textTheme: buildTextTheme(),
       appBarTheme: buildAppBarTheme(),
+      navigationBarTheme: buildNavigationBarThemeData(),
     );
   }
 
@@ -44,7 +50,42 @@ class MyApp extends StatelessWidget {
     return const AppBarTheme(
       backgroundColor: AppColors.primaryColor,
       surfaceTintColor: Colors.transparent,
-      foregroundColor: AppColors.textOnPrimaryColor,
+      foregroundColor: Colors.white,
+    );
+  }
+
+  NavigationBarThemeData buildNavigationBarThemeData() {
+    return NavigationBarThemeData(
+      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
+        (states) {
+          if (states.contains(WidgetState.selected)) {
+            return const TextStyle(
+              fontWeight: FontWeight.w800,
+              color: AppColors.veryDarkPrimaryColor,
+            );
+          } else {
+            return const TextStyle(
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            );
+          }
+        },
+      ),
+      iconTheme: WidgetStateProperty.resolveWith<IconThemeData>(
+        (states) {
+          if (states.contains(WidgetState.selected)) {
+            return const IconThemeData(
+              color: AppColors.darkPrimaryColor,
+              size: 27,
+            );
+          } else {
+            return const IconThemeData(
+              color: Colors.black,
+              size: 27,
+            );
+          }
+        },
+      ),
     );
   }
 

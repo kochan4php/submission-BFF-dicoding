@@ -13,34 +13,31 @@ class BottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      onTap: onTap,
+    return NavigationBar(
+      onDestinationSelected: onTap,
       elevation: 0,
       backgroundColor: Colors.white,
-      selectedItemColor: AppColors.textPrimaryColor,
-      showUnselectedLabels: false,
-      currentIndex: currentIndex,
-      type: BottomNavigationBarType.fixed,
-      selectedLabelStyle: const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-      ),
-      iconSize: 27,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home_rounded),
+      indicatorColor: AppColors.lightPrimaryColor,
+      selectedIndex: currentIndex,
+      destinations: const <Widget>[
+        NavigationDestination(
+          selectedIcon: Icon(Icons.home_rounded),
+          icon: Icon(Icons.home_outlined),
           label: 'Beranda',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search_rounded),
+        NavigationDestination(
+          selectedIcon: Icon(Icons.content_paste_search_rounded),
+          icon: Icon(Icons.content_paste_search_outlined),
           label: 'Pencarian',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.bookmarks_rounded),
+        NavigationDestination(
+          selectedIcon: Icon(Icons.bookmarks_rounded),
+          icon: Icon(Icons.bookmarks_outlined),
           label: 'Disimpan',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings_rounded),
+        NavigationDestination(
+          selectedIcon: Icon(Icons.settings_rounded),
+          icon: Icon(Icons.settings_outlined),
           label: 'Pengaturan',
         ),
       ],
