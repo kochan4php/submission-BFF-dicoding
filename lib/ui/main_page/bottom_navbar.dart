@@ -31,8 +31,8 @@ class BottomNavbar extends StatelessWidget {
           label: 'Pencarian',
         ),
         NavigationDestination(
-          selectedIcon: Icon(Icons.bookmarks_rounded),
-          icon: Icon(Icons.bookmarks_outlined),
+          selectedIcon: Icon(Icons.collections_bookmark_rounded),
+          icon: Icon(Icons.collections_bookmark_outlined),
           label: 'Disimpan',
         ),
         NavigationDestination(
