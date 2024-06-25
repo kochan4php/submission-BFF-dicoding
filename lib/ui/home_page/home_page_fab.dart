@@ -19,7 +19,7 @@ class HomePageFAB extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
       ),
       backgroundColor: AppColors.primaryColor,
-      foregroundColor: Colors.black,
+      foregroundColor: Colors.white,
       onPressed: () => _refreshRestaurants(context),
       child: const Icon(Icons.refresh),
     );
