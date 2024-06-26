@@ -90,6 +90,28 @@ class RestaurantController {
     }
   }
 
+  Future<Restaurant> getOneRandom() async {
+    logger.d('Call API Get One Random Restaurants');
+
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/list'));
+
+      if (response.statusCode == 200) {
+        List<Restaurant> restaurants = List.from(
+          parsedListRestaurants(response.body),
+        );
+
+        restaurants.shuffle(Random());
+        return restaurants.take(1).toList().first;
+      } else {
+        throw Exception('Failed load data');
+      }
+    } catch (error) {
+      logger.e(error);
+      throw Exception(error);
+    }
+  }
+
   List<Restaurant> parsedListRestaurants(String? json) {
     if (json == null) return [];
 

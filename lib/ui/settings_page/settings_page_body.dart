@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/services/notification_service.dart';
 
 class SettingsPageBody extends StatelessWidget {
-  const SettingsPageBody({super.key});
+  final NotificationService _notificationService = NotificationService();
+
+  SettingsPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,25 +53,26 @@ class SettingsPageBody extends StatelessWidget {
             isThreeLine: true,
             trailing: Switch(
               value: false,
-              onChanged: (bool value) {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text('Pemberitahuan'),
-                      content: const Text(
-                        'Fitur notifikasi rekomendasi restoran sedang dalam tahap pengembangan!',
-                      ),
-                      backgroundColor: Colors.white,
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    );
-                  },
-                );
+              onChanged: (bool value) async {
+                await _notificationService.showNotification();
+                // showDialog(
+                //   context: context,
+                //   builder: (context) {
+                //     return AlertDialog(
+                //       title: const Text('Pemberitahuan'),
+                //       content: const Text(
+                //         'Fitur notifikasi rekomendasi restoran sedang dalam tahap pengembangan!',
+                //       ),
+                //       backgroundColor: Colors.white,
+                //       actions: <Widget>[
+                //         TextButton(
+                //           onPressed: () => Navigator.pop(context),
+                //           child: const Text('OK'),
+                //         ),
+                //       ],
+                //     );
+                //   },
+                // );
               },
             ),
           ),
