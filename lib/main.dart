@@ -8,6 +8,7 @@ Future main() async {
   final NotificationService notificationService = NotificationService();
 
   await notificationService.initNotification();
+  notificationService.requestAndroidPermission();
 
   runApp(const MyApp());
 }

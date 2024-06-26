@@ -26,6 +26,15 @@ class NotificationService {
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
+  void requestAndroidPermission() {
+    var resolvePlatformSpecificImplementation =
+        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>();
+
+    // resolvePlatformSpecificImplementation?.requestExactAlarmsPermission();
+    resolvePlatformSpecificImplementation?.requestNotificationsPermission();
+  }
+
   Future showNotification() async {
     String channelId = '1';
     String channelName = 'rekomendasi_resto';
