@@ -16,7 +16,7 @@ class BottomNavbar extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         border: Border(
-          top: BorderSide(width: 0.5, color: Colors.grey),
+          top: BorderSide(width: 0.18, color: Colors.grey),
         ),
       ),
       child: NavigationBar(

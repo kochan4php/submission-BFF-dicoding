@@ -43,12 +43,12 @@ class AppTheme {
           if (states.contains(WidgetState.selected)) {
             return const IconThemeData(
               color: AppColors.darkPrimaryColor,
-              size: 27,
+              size: 25,
             );
           } else {
             return const IconThemeData(
               color: Colors.black,
-              size: 27,
+              size: 25,
             );
           }
         },
