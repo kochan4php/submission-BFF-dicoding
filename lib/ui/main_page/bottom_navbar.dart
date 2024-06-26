@@ -21,7 +21,6 @@ class BottomNavbar extends StatelessWidget {
       ),
       child: NavigationBar(
         onDestinationSelected: onTap,
-        elevation: 0,
         backgroundColor: Colors.white,
         indicatorColor: AppColors.lightPrimaryColor,
         selectedIndex: currentIndex,
