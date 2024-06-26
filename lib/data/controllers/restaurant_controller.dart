@@ -7,7 +7,9 @@ import 'package:restaurant_app/utils/logger.dart';
 
 class RestaurantController {
   static RestaurantController? _instance;
-  final String baseUrl = 'https://restaurant-api.dicoding.dev';
+  final String _baseUrl = 'https://restaurant-api.dicoding.dev';
+
+  String get baseUrl => _baseUrl;
 
   RestaurantController._internal() {
     _instance = this;
@@ -17,11 +19,18 @@ class RestaurantController {
     return _instance ?? RestaurantController._internal();
   }
 
-  Future<List<Restaurant>> getAll() async {
+  Future<List<Restaurant>> getAll({http.Client? client}) async {
     logger.d('Call API Get All Restaurants');
 
     try {
-      final response = await http.get(Uri.parse('$baseUrl/list'));
+      final http.Response response;
+      final String url = '$_baseUrl/list';
+
+      if (client == null) {
+        response = await http.get(Uri.parse(url));
+      } else {
+        response = await client.get(Uri.parse(url));
+      }
 
       if (response.statusCode == 200) {
         return parsedListRestaurants(response.body);
@@ -34,11 +43,21 @@ class RestaurantController {
     }
   }
 
-  Future<Restaurant> getDetail({required String id}) async {
+  Future<Restaurant> getDetail({
+    required String id,
+    http.Client? client,
+  }) async {
     logger.d('Call API Get Detail Restaurant');
 
     try {
-      final response = await http.get(Uri.parse('$baseUrl/detail/$id'));
+      final http.Response response;
+      final String url = '$_baseUrl/detail/$id';
+
+      if (client == null) {
+        response = await http.get(Uri.parse(url));
+      } else {
+        response = await client.get(Uri.parse(url));
+      }
 
       if (response.statusCode == 200) {
         return parsedDetailRestaurant(response.body);
@@ -51,11 +70,21 @@ class RestaurantController {
     }
   }
 
-  Future<List<Restaurant>> search({String query = ''}) async {
+  Future<List<Restaurant>> search({
+    String query = '',
+    http.Client? client,
+  }) async {
     logger.d('Call API Search Restaurants');
 
     try {
-      final response = await http.get(Uri.parse('$baseUrl/search?q=$query'));
+      final http.Response response;
+      final String url = '$_baseUrl/search?q=$query';
+
+      if (client == null) {
+        response = await http.get(Uri.parse(url));
+      } else {
+        response = await client.get(Uri.parse(url));
+      }
 
       if (response.statusCode == 200) {
         return parsedListRestaurants(response.body);
@@ -72,7 +101,7 @@ class RestaurantController {
     logger.d('Call API Get Random Restaurants');
 
     try {
-      final response = await http.get(Uri.parse('$baseUrl/list'));
+      final response = await http.get(Uri.parse('$_baseUrl/list'));
 
       if (response.statusCode == 200) {
         List<Restaurant> restaurants = List.from(
@@ -94,7 +123,7 @@ class RestaurantController {
     logger.d('Call API Get One Random Restaurants');
 
     try {
-      final response = await http.get(Uri.parse('$baseUrl/list'));
+      final response = await http.get(Uri.parse('$_baseUrl/list'));
 
       if (response.statusCode == 200) {
         List<Restaurant> restaurants = List.from(
