@@ -13,34 +13,41 @@ class BottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NavigationBar(
-      onDestinationSelected: onTap,
-      elevation: 0,
-      backgroundColor: Colors.white,
-      indicatorColor: AppColors.lightPrimaryColor,
-      selectedIndex: currentIndex,
-      destinations: const <Widget>[
-        NavigationDestination(
-          selectedIcon: Icon(Icons.home_rounded),
-          icon: Icon(Icons.home_outlined),
-          label: 'Beranda',
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 0.4, color: Colors.black),
         ),
-        NavigationDestination(
-          selectedIcon: Icon(Icons.content_paste_search_rounded),
-          icon: Icon(Icons.content_paste_search_outlined),
-          label: 'Pencarian',
-        ),
-        NavigationDestination(
-          selectedIcon: Icon(Icons.collections_bookmark_rounded),
-          icon: Icon(Icons.collections_bookmark_outlined),
-          label: 'Disimpan',
-        ),
-        NavigationDestination(
-          selectedIcon: Icon(Icons.settings_rounded),
-          icon: Icon(Icons.settings_outlined),
-          label: 'Pengaturan',
-        ),
-      ],
+      ),
+      child: NavigationBar(
+        onDestinationSelected: onTap,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        indicatorColor: AppColors.lightPrimaryColor,
+        selectedIndex: currentIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home_rounded),
+            icon: Icon(Icons.home_outlined),
+            label: 'Beranda',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.content_paste_search_rounded),
+            icon: Icon(Icons.content_paste_search_outlined),
+            label: 'Pencarian',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.collections_bookmark_rounded),
+            icon: Icon(Icons.collections_bookmark_outlined),
+            label: 'Disimpan',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.settings_rounded),
+            icon: Icon(Icons.settings_outlined),
+            label: 'Pengaturan',
+          ),
+        ],
+      ),
     );
   }
 }

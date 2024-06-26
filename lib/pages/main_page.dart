@@ -16,9 +16,7 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
 
   void _onTappedNavigationBar(int value) {
-    setState(() {
-      currentIndex = value;
-    });
+    setState(() => currentIndex = value);
   }
 
   @override
