@@ -1,7 +1,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- INTERNET berfungsi untuk mengizinkan aplikasi untuk mengakses internet perangkat -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- VIBRATE berfungsi untuk menambahkan fungsi getar ketika notifikasi muncul -->
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- RECEIVE_BOOT_COMPLETED berfungsi untuk melakukan penjadwalan notifikasi -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- WAKE_LOCK berfungsi untuk menjaga CPU perangkat tetap menyala -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- SCHEDULE_EXACT_ALARM berfungsi untuk menampilkan notifikasi di waktu yang tepat (Untuk android 12 keatas) -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
     <application
         android:label="Restorasa"
         android:name="${applicationName}"
@@ -28,6 +40,23 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <service
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"/>
+        <receiver
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmBroadcastReceiver"
+            android:exported="false"/>
+        <receiver
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.RebootBroadcastReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

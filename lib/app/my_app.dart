@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
+
 import 'package:restaurant_app/data/providers/bookmark/bookmark_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/list_restaurant_provider.dart';
+import 'package:restaurant_app/data/providers/restaurant/schedule_restaurant_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/search_restaurant_provider.dart';
+import 'package:restaurant_app/data/providers/shared_prefs/shared_prefs_provider.dart';
 import 'package:restaurant_app/routes/routes.dart';
 import 'package:restaurant_app/themes/app_theme.dart';
 
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (context) => ListRestaurantProvider()),
       ChangeNotifierProvider(create: (context) => SearchRestaurantProvider()),
       ChangeNotifierProvider(create: (context) => BookmarkProvider()),
+      ChangeNotifierProvider(create: (context) => SharedPrefsProvider()),
+      ChangeNotifierProvider(create: (context) => ScheduleRestaurantProvider()),
     ];
   }
 }

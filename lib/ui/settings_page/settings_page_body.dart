@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_app/data/providers/restaurant/schedule_restaurant_provider.dart';
+import 'package:restaurant_app/data/providers/shared_prefs/shared_prefs_provider.dart';
 import 'package:restaurant_app/services/notification_service.dart';
+import 'package:restaurant_app/themes/colors.dart';
 
 class SettingsPageBody extends StatelessWidget {
   final NotificationService _notificationService = NotificationService();
@@ -20,6 +24,7 @@ class SettingsPageBody extends StatelessWidget {
             ),
             trailing: Switch(
               value: false,
+              activeColor: AppColors.primaryColor,
               onChanged: (bool value) {
                 showDialog(
                   context: context,
@@ -51,28 +56,26 @@ class SettingsPageBody extends StatelessWidget {
               'Dapatkan rekomendasi restoran setiap harinya',
             ),
             isThreeLine: true,
-            trailing: Switch(
-              value: false,
-              onChanged: (bool value) async {
-                await _notificationService.showNotification();
-                // showDialog(
-                //   context: context,
-                //   builder: (context) {
-                //     return AlertDialog(
-                //       title: const Text('Pemberitahuan'),
-                //       content: const Text(
-                //         'Fitur notifikasi rekomendasi restoran sedang dalam tahap pengembangan!',
-                //       ),
-                //       backgroundColor: Colors.white,
-                //       actions: <Widget>[
-                //         TextButton(
-                //           onPressed: () => Navigator.pop(context),
-                //           child: const Text('OK'),
-                //         ),
-                //       ],
-                //     );
-                //   },
-                // );
+            trailing:
+                Consumer2<SharedPrefsProvider, ScheduleRestaurantProvider>(
+              builder: (
+                BuildContext context,
+                SharedPrefsProvider sharedPrefsProvider,
+                ScheduleRestaurantProvider scheduleRestaurantProvider,
+                Widget? child,
+              ) {
+                return Switch(
+                  value:
+                      sharedPrefsProvider.isDailyRecommendationRestaurantActive,
+                  activeColor: AppColors.primaryColor,
+                  onChanged: (bool value) async {
+                    await sharedPrefsProvider
+                        .setDailyRecommendationRestaurant(value);
+
+                    await scheduleRestaurantProvider
+                        .scheduledRecommendation(value);
+                  },
+                );
               },
             ),
           ),
