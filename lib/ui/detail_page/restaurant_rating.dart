@@ -24,7 +24,7 @@ class RestaurantRating extends StatelessWidget with Spacing {
         gap(x: 5.0),
         Text(
           restaurant.rating.toString(),
-          style: textTheme.titleMedium,
+          style: textTheme.titleLarge,
         ),
       ],
     );

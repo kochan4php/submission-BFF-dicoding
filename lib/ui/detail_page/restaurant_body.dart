@@ -4,8 +4,7 @@ import 'package:restaurant_app/mixin/spacing.dart';
 import 'package:restaurant_app/ui/detail_page/list_drink_menu_restaurant.dart';
 import 'package:restaurant_app/ui/detail_page/list_food_menu_restaurant.dart';
 import 'package:restaurant_app/ui/detail_page/restaurant_categories.dart';
-import 'package:restaurant_app/ui/detail_page/restaurant_location.dart';
-import 'package:restaurant_app/ui/detail_page/restaurant_rating.dart';
+import 'package:restaurant_app/ui/detail_page/restaurant_overview.dart';
 import 'package:restaurant_app/ui/detail_page/restaurant_reviews.dart';
 
 class RestaurantBody extends StatelessWidget with Spacing {
@@ -25,11 +24,7 @@ class RestaurantBody extends StatelessWidget with Spacing {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(restaurant.name, style: textTheme.headlineMedium),
-          gap(y: 15.0),
-          RestaurantLocation(restaurant: restaurant),
-          gap(y: 15.0),
-          RestaurantRating(restaurant: restaurant),
+          RestaurantOverview(restaurant: restaurant),
           gap(y: 15.0),
           RestaurantCategories(categories: restaurant.categories!),
           gap(y: 15.0),
