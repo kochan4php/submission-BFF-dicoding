@@ -58,6 +58,7 @@ void main() {
             "categories": [],
             "menus": {"foods": [], "drinks": []},
             "rating": 4.6,
+            "customerReviews": [],
           }
         };
 

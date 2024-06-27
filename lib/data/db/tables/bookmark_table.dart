@@ -38,7 +38,7 @@ class BookmarkTable extends BaseDatabase<Restaurant> {
   @override
   Future insert(Restaurant data) async {
     final db = await database;
-    await db!.insert(bookmarkTableName, data.toJsonWithoutMenu());
+    await db!.insert(bookmarkTableName, data.toJsonForBookmark());
   }
 
   @override
@@ -46,7 +46,7 @@ class BookmarkTable extends BaseDatabase<Restaurant> {
     final db = await database;
     await db!.update(
       bookmarkTableName,
-      data.toJsonWithoutMenu(),
+      data.toJsonForBookmark(),
       where: 'id = ?',
       whereArgs: [id],
     );

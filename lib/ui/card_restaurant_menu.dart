@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
+import 'package:restaurant_app/themes/colors.dart';
 
 class CardRestaurantMenu extends StatelessWidget with Spacing {
   final String menuImage;
@@ -14,6 +15,7 @@ class CardRestaurantMenu extends StatelessWidget with Spacing {
   @override
   Widget build(BuildContext context) {
     return Card.outlined(
+      color: AppColors.veryLightPrimaryColor,
       child: ConstrainedBox(
         constraints: const BoxConstraints(
           minWidth: 150,

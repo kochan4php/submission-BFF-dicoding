@@ -3,8 +3,10 @@ import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
 import 'package:restaurant_app/ui/detail_page/list_drink_menu_restaurant.dart';
 import 'package:restaurant_app/ui/detail_page/list_food_menu_restaurant.dart';
+import 'package:restaurant_app/ui/detail_page/restaurant_categories.dart';
 import 'package:restaurant_app/ui/detail_page/restaurant_location.dart';
 import 'package:restaurant_app/ui/detail_page/restaurant_rating.dart';
+import 'package:restaurant_app/ui/detail_page/restaurant_reviews.dart';
 
 class RestaurantBody extends StatelessWidget with Spacing {
   final Restaurant restaurant;
@@ -24,23 +26,27 @@ class RestaurantBody extends StatelessWidget with Spacing {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(restaurant.name, style: textTheme.headlineMedium),
-          gap(y: 12.0),
+          gap(y: 15.0),
           RestaurantLocation(restaurant: restaurant),
-          gap(y: 12.0),
+          gap(y: 15.0),
           RestaurantRating(restaurant: restaurant),
-          gap(y: 20.0),
+          gap(y: 15.0),
+          RestaurantCategories(categories: restaurant.categories!),
+          gap(y: 15.0),
           Text(restaurant.description, style: textTheme.bodyLarge),
           gap(y: 25.0),
-          if (restaurant.menu != null) ...[
-            Text('Menu Makanan :', style: textTheme.titleMedium),
-            gap(y: 10),
-            ListFoodMenuRestaurant(restaurant: restaurant),
-            gap(y: 20.0),
-            Text('Menu Minuman :', style: textTheme.titleMedium),
-            gap(y: 10.0),
-            ListDrinkMenuRestaurant(restaurant: restaurant),
-            gap(y: 18.0),
-          ],
+          Text('Menu Makanan :', style: textTheme.titleMedium),
+          gap(y: 12),
+          ListFoodMenuRestaurant(restaurant: restaurant),
+          gap(y: 25.0),
+          Text('Menu Minuman :', style: textTheme.titleMedium),
+          gap(y: 12.0),
+          ListDrinkMenuRestaurant(restaurant: restaurant),
+          gap(y: 25.0),
+          Text('Ulasan', style: textTheme.titleMedium),
+          gap(y: 12),
+          RestaurantReviews(customerReviews: restaurant.customerReviews!),
+          gap(y: 25.0),
         ],
       ),
     );
