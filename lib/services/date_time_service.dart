@@ -6,7 +6,7 @@ class DateTimeService {
     // Date and Time format
     final DateTime now = DateTime.now();
     final DateFormat dateFormat = DateFormat('y/M/d');
-    const String timeSpecific = '19:40:00';
+    const String timeSpecific = '11:00:00';
     final DateFormat completeFormat = DateFormat('y/M/d H:m:s');
 
     // Today Format
@@ -18,11 +18,15 @@ class DateTimeService {
     final DateTime tomorrowFormatted = resultToday.add(const Duration(days: 1));
     final String tomorrowDate = dateFormat.format(tomorrowFormatted);
     final String tomorrowDateAndTime = '$tomorrowDate $timeSpecific';
-    final DateTime resultTomorrow =
-        completeFormat.parseStrict(tomorrowDateAndTime);
+    final DateTime resultTomorrow = completeFormat.parseStrict(
+      tomorrowDateAndTime,
+    );
 
-    final DateTime result =
-        now.isAfter(resultToday) ? resultTomorrow : resultToday;
+    final DateTime result = now.isAfter(
+      resultToday,
+    )
+        ? resultTomorrow
+        : resultToday;
 
     logger.d(result);
 

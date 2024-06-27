@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/schedule_restaurant_provider.dart';
 import 'package:restaurant_app/data/providers/shared_prefs/shared_prefs_provider.dart';
-import 'package:restaurant_app/services/notification_service.dart';
 import 'package:restaurant_app/themes/colors.dart';
 
 class SettingsPageBody extends StatelessWidget {
-  final NotificationService _notificationService = NotificationService();
-
-  SettingsPageBody({super.key});
+  const SettingsPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {

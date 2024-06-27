@@ -7,8 +7,8 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const SettingsPageAppBar(),
+    return const Scaffold(
+      appBar: SettingsPageAppBar(),
       body: SettingsPageBody(),
     );
   }

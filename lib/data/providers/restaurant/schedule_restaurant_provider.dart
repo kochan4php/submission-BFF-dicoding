@@ -17,7 +17,7 @@ class ScheduleRestaurantProvider with ChangeNotifier {
       logger.d('Scheduled to get recommendation restaurant activated');
 
       await AndroidAlarmManager.periodic(
-        const Duration(seconds: 1),
+        const Duration(hours: 24),
         1,
         BackgroundService.callback,
         startAt: DateTimeService.format(),
