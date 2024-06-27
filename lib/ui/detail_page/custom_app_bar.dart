@@ -49,6 +49,7 @@ class CustomAppBar extends StatelessWidget {
                           message: 'Berhasil $sentences daftar favorite',
                           backgroundColor: AppColors.primaryColor,
                         ),
+                        displayDuration: const Duration(seconds: 1),
                       );
                     },
                     icon: Icon(
