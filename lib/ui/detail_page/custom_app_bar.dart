@@ -42,14 +42,14 @@ class CustomAppBar extends StatelessWidget {
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('Berhasil $sentences bookmark'),
+                          content: Text('Berhasil $sentences daftar favorite'),
                           duration: const Duration(seconds: 1),
                         ),
                       );
                     },
                     icon: Icon(
-                      isBookmark ? Icons.bookmark : Icons.bookmark_border,
-                      color: Colors.black,
+                      isBookmark ? Icons.favorite : Icons.favorite_border,
+                      color: Colors.red,
                     ),
                   ),
                 );
