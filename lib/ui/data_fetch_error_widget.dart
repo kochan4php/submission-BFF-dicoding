@@ -16,14 +16,14 @@ class DataFetchErrorWidget extends StatelessWidget with Spacing {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 15.0,
+        horizontal: 25.0,
         vertical: 18.0,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-           Icon(
+          Icon(
             fetchErrorType == FetchErrorType.noInet
                 ? Icons.signal_wifi_connected_no_internet_4_rounded
                 : Icons.do_not_disturb_alt_rounded,

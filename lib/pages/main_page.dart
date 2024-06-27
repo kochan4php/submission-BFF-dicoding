@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/pages/bookmark_page.dart';
+import 'package:restaurant_app/pages/favorite_page.dart';
 import 'package:restaurant_app/pages/home_page.dart';
 import 'package:restaurant_app/pages/search_page.dart';
 import 'package:restaurant_app/pages/settings_page.dart';
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> {
     final List<Widget> listBody = <Widget>[
       const HomePage(),
       const SearchPage(),
-      const BookmarkPage(),
+      const FavoritePage(),
       const SettingsPage(),
     ];
 

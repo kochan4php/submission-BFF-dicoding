@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/models/restaurant.dart';
-import 'package:restaurant_app/data/providers/bookmark/bookmark_provider.dart';
+import 'package:restaurant_app/data/providers/favorite/favorite_provider.dart';
 import 'package:restaurant_app/mixin/spacing.dart';
 import 'package:restaurant_app/ui/detail_page/custom_app_bar.dart';
 import 'package:shimmer/shimmer.dart';
@@ -17,10 +17,10 @@ class RestaurantImage extends StatelessWidget with Spacing {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<BookmarkProvider>(
+    return Consumer<FavoriteProvider>(
       builder: (
         BuildContext context,
-        BookmarkProvider value,
+        FavoriteProvider value,
         Widget? child,
       ) {
         return Stack(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class BookmarkPageAppBar extends StatelessWidget
+class FavoritePageAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  const BookmarkPageAppBar({super.key});
+  const FavoritePageAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

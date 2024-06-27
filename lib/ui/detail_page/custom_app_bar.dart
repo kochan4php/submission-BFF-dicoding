@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/models/restaurant.dart';
-import 'package:restaurant_app/data/providers/bookmark/bookmark_provider.dart';
+import 'package:restaurant_app/data/providers/favorite/favorite_provider.dart';
+import 'package:restaurant_app/themes/colors.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class CustomAppBar extends StatelessWidget {
-  final BookmarkProvider provider;
+  final FavoriteProvider provider;
   final Restaurant restaurant;
 
   const CustomAppBar({
@@ -28,7 +31,7 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
             FutureBuilder(
-              future: provider.isBookmarked(restaurant.id),
+              future: provider.isFavoriteed(restaurant.id),
               builder: (context, snapshot) {
                 bool isBookmark = snapshot.data ?? false;
                 String sentences =
@@ -38,12 +41,13 @@ class CustomAppBar extends StatelessWidget {
                   backgroundColor: Colors.white,
                   child: IconButton(
                     onPressed: () {
-                      provider.setBookmark(restaurant);
+                      provider.setFavorite(restaurant);
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Berhasil $sentences daftar favorite'),
-                          duration: const Duration(seconds: 1),
+                      showTopSnackBar(
+                        Overlay.of(context),
+                        CustomSnackBar.success(
+                          message: 'Berhasil $sentences daftar favorite',
+                          backgroundColor: AppColors.primaryColor,
                         ),
                       );
                     },

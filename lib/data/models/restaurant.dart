@@ -92,7 +92,7 @@ class Restaurant {
     }
   }
 
-  Map<String, dynamic> toJsonForBookmark() {
+  Map<String, dynamic> toJsonForFavorite() {
     return {
       'id': id,
       'name': name,

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nested/nested.dart';
 import 'package:provider/provider.dart';
-
-import 'package:restaurant_app/data/providers/bookmark/bookmark_provider.dart';
+import 'package:restaurant_app/data/providers/favorite/favorite_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/list_restaurant_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/schedule_restaurant_provider.dart';
 import 'package:restaurant_app/data/providers/restaurant/search_restaurant_provider.dart';
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
     return [
       ChangeNotifierProvider(create: (context) => ListRestaurantProvider()),
       ChangeNotifierProvider(create: (context) => SearchRestaurantProvider()),
-      ChangeNotifierProvider(create: (context) => BookmarkProvider()),
+      ChangeNotifierProvider(create: (context) => FavoriteProvider()),
       ChangeNotifierProvider(create: (context) => SharedPrefsProvider()),
       ChangeNotifierProvider(create: (context) => ScheduleRestaurantProvider()),
     ];
