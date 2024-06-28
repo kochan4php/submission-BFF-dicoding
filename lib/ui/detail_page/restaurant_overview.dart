@@ -22,20 +22,22 @@ class RestaurantOverview extends StatelessWidget with Spacing {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                width: 250,
-                child: Text(restaurant.name, style: textTheme.headlineMedium),
-              ),
-              gap(y: 15.0),
-              RestaurantLocation(restaurant: restaurant),
-            ],
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(restaurant.name, style: textTheme.headlineMedium),
+                gap(y: 15.0),
+                RestaurantLocation(restaurant: restaurant),
+              ],
+            ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 9, right: 9),
-            child: RestaurantRating(restaurant: restaurant),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(top: 8, right: 8),
+              child: RestaurantRating(restaurant: restaurant),
+            ),
           ),
         ],
       ),

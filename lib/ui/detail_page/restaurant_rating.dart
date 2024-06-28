@@ -15,6 +15,7 @@ class RestaurantRating extends StatelessWidget with Spacing {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         const Icon(
           Icons.star,
