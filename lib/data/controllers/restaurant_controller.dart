@@ -97,7 +97,7 @@ class RestaurantController {
     }
   }
 
-  Future<List<Restaurant>> getRandom() async {
+  Future<List<Restaurant>> getRandom({int take = 3}) async {
     logger.d('Call API Get Random Restaurants');
 
     try {
@@ -109,29 +109,7 @@ class RestaurantController {
         );
 
         restaurants.shuffle(Random());
-        return restaurants.take(5).toList();
-      } else {
-        throw Exception('Failed load data');
-      }
-    } catch (error) {
-      logger.e(error);
-      throw Exception(error);
-    }
-  }
-
-  Future<Restaurant> getOneRandom() async {
-    logger.d('Call API Get One Random Restaurants');
-
-    try {
-      final response = await http.get(Uri.parse('$_baseUrl/list'));
-
-      if (response.statusCode == 200) {
-        List<Restaurant> restaurants = List.from(
-          parsedListRestaurants(response.body),
-        );
-
-        restaurants.shuffle(Random());
-        return restaurants.take(1).toList().first;
+        return restaurants.take(take).toList();
       } else {
         throw Exception('Failed load data');
       }

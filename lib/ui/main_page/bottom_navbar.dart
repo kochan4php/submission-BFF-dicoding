@@ -38,7 +38,7 @@ class BottomNavbar extends StatelessWidget {
           NavigationDestination(
             selectedIcon: Icon(Icons.favorite_rounded),
             icon: Icon(Icons.favorite_outline),
-            label: 'Disimpan',
+            label: 'Favorit',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.settings_rounded),

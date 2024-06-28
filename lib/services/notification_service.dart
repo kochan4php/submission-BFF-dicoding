@@ -57,7 +57,8 @@ class NotificationService {
     String channelName = 'rekomendasi_resto';
     String channelDescription = 'Rekomendasi restoran dari Resto Rasa';
 
-    Restaurant randomRestaurant = await restaurantController.getOneRandom();
+    Restaurant randomRestaurant =
+        (await restaurantController.getRandom(take: 1)).first;
 
     String titleNotification = 'Rekomendasi Restoran';
     String bodyNotification =
