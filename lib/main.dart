@@ -9,15 +9,10 @@ Future main() async {
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarDividerColor: Colors.transparent,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarDividerColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
-  );
-
-  SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.edgeToEdge,
-    overlays: [SystemUiOverlay.top],
   );
 
   await AndroidAlarmManager.initialize();
