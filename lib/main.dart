@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:restaurant_app/app/my_app.dart';
 import 'package:restaurant_app/services/notification_service.dart';
+import 'package:restaurant_app/utils/checkAndRequestAlarmPermission.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +15,8 @@ Future main() async {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
+
+  await checkAndRequestAlarmPermission();
 
   await AndroidAlarmManager.initialize();
 

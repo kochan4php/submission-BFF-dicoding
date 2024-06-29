@@ -52,7 +52,6 @@ class NotificationService {
         ?.requestNotificationsPermission();
   }
 
-  @pragma('vm:entry-point')
   Future showNotification() async {
     String channelId = '1';
     String channelName = 'rekomendasi_resto';

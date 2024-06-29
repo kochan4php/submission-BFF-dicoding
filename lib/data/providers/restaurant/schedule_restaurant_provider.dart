@@ -1,7 +1,6 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:restaurant_app/services/background_service.dart';
-import 'package:restaurant_app/services/date_time_service.dart';
 import 'package:restaurant_app/utils/logger.dart';
 
 class ScheduleRestaurantProvider with ChangeNotifier {
@@ -17,10 +16,11 @@ class ScheduleRestaurantProvider with ChangeNotifier {
       logger.d('Scheduled to get recommendation restaurant activated');
 
       await AndroidAlarmManager.periodic(
-        const Duration(seconds: 1),
+        const Duration(hours: 24),
         1,
         BackgroundService.callback,
         startAt: DateTimeService.format(),
+        // startAt: DateTime.now(),
         wakeup: true,
         exact: true,
       );

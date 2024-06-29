@@ -20,6 +20,7 @@ class BackgroundService {
     IsolateNameServer.registerPortWithName(_port.sendPort, _isolateName);
   }
 
+  @pragma('vm:entry-point')
   static Future callback() async {
     logger.d('Background Service Callback Running');
 
